@@ -316,6 +316,7 @@ nav {
 }
 
 .hero-copy,
+.hero-signals,
 .avatar-command,
 .project-story,
 .capability-grid > *,
@@ -422,45 +423,198 @@ nav {
   color: #ffffff;
 }
 
-.hero-chips {
+.hero-signals {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  max-width: 760px;
+  grid-template-columns:
+    minmax(106px, 0.78fr)
+    minmax(118px, 0.88fr)
+    minmax(184px, 1.34fr)
+    minmax(170px, 1.26fr);
+  gap: 8px;
+  max-width: 800px;
   margin-top: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(18px);
-  overflow: hidden;
+  perspective: 1100px;
 }
 
-.hero-chips > span {
+.signal-module {
+  --signal-accent: var(--teal-bright);
   position: relative;
   min-width: 0;
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
-  color: #dcf7f1;
-  font-size: 12px;
-  font-weight: 900;
+  border: 1px solid rgba(151, 194, 181, 0.22);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(67, 224, 200, 0.095), rgba(52, 117, 246, 0.045)),
+    rgba(255, 255, 255, 0.062);
+  box-shadow:
+    0 16px 46px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   overflow: hidden;
-  padding: 12px 13px 12px 27px;
+  padding: 12px;
+  transform-style: preserve-3d;
+  transition:
+    border-color 220ms ease,
+    background 220ms ease,
+    transform 220ms ease;
+  will-change: transform;
+}
+
+.signal-module::before,
+.signal-module::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.signal-module::before {
+  background:
+    linear-gradient(rgba(67, 224, 200, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 117, 246, 0.055) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.55;
+}
+
+.signal-module::after {
+  border-radius: inherit;
+  box-shadow: inset 0 0 28px color-mix(in srgb, var(--signal-accent) 18%, transparent);
+  opacity: 0.62;
+}
+
+.signal-module[data-signal="track"] {
+  --signal-accent: var(--blue);
+}
+
+.signal-module[data-signal="infer"] {
+  --signal-accent: var(--teal-bright);
+}
+
+.signal-module[data-signal="reproduce"] {
+  --signal-accent: var(--amber);
+}
+
+.signal-module-live {
+  border-color: rgba(67, 224, 200, 0.5);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(67, 224, 200, 0.24), transparent 34%),
+    linear-gradient(135deg, rgba(67, 224, 200, 0.14), rgba(52, 117, 246, 0.075)),
+    rgba(255, 255, 255, 0.07);
+}
+
+.signal-scan {
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: -42%;
+  width: 42%;
+  transform: skewX(-18deg);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--signal-accent) 34%, transparent), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.signal-module-head,
+.signal-module-foot {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.signal-module-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    "dot label"
+    "dot state";
+  gap: 4px 8px;
+}
+
+.signal-module-head strong {
+  grid-area: label;
+  min-width: 0;
+  color: #effff8;
+  font-size: 12px;
+  font-weight: 950;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.hero-chips > span:last-child {
-  border-right: 0;
+.signal-module-head em {
+  grid-area: state;
+  justify-self: start;
+  border: 1px solid color-mix(in srgb, var(--signal-accent) 34%, transparent);
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--signal-accent) 82%, #ffffff);
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  padding: 5px 6px;
+  text-transform: uppercase;
 }
 
-.hero-chips > span::before {
+.signal-dot {
+  position: relative;
+  grid-area: dot;
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--signal-accent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--signal-accent) 72%, transparent);
+}
+
+.signal-dot::after {
   position: absolute;
-  left: 12px;
-  top: 50%;
-  width: 7px;
-  height: 7px;
-  transform: translateY(-50%);
-  border-radius: 2px;
-  background: var(--teal-bright);
+  inset: -7px;
+  border: 1px solid color-mix(in srgb, var(--signal-accent) 55%, transparent);
+  border-radius: 8px;
   content: "";
+  opacity: 0.32;
+}
+
+.signal-module p {
+  position: relative;
+  z-index: 1;
+  margin: 10px 0 12px;
+  color: rgba(224, 249, 241, 0.72);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.28;
+  min-height: 2.56em;
+  overflow-wrap: anywhere;
+}
+
+.signal-module-foot {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signal-module-foot > span {
+  color: rgba(244, 255, 251, 0.62);
+  font-size: 10px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.signal-bars {
+  display: flex;
+  align-items: end;
+  gap: 3px;
+  height: 24px;
+}
+
+.signal-bars i {
+  width: 4px;
+  height: var(--bar-level);
+  min-height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--signal-accent) 92%, #ffffff), color-mix(in srgb, var(--signal-accent) 55%, transparent));
+  box-shadow: 0 0 14px color-mix(in srgb, var(--signal-accent) 32%, transparent);
+  transform-origin: bottom;
 }
 
 .avatar-command {
@@ -828,6 +982,95 @@ nav {
   overflow: hidden;
 }
 
+.visual-pickle::before,
+.visual-audio::before,
+.visual-waste::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(244, 255, 251, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 255, 251, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 72% 28%, color-mix(in srgb, var(--project-accent) 24%, transparent), transparent 30%);
+  background-size: 28px 28px, 28px 28px, auto;
+  content: "";
+}
+
+.algorithm-kicker,
+.algorithm-readout,
+.track-vector,
+.threshold-line {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.algorithm-kicker {
+  left: 16px;
+  top: 14px;
+  border: 1px solid color-mix(in srgb, var(--project-accent) 34%, transparent);
+  border-radius: 999px;
+  background: rgba(4, 14, 12, 0.72);
+  color: color-mix(in srgb, var(--project-accent) 74%, #ffffff);
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  padding: 6px 9px;
+  text-transform: uppercase;
+}
+
+.algorithm-readout {
+  border: 1px solid rgba(151, 194, 181, 0.24);
+  border-radius: 999px;
+  background: rgba(4, 14, 12, 0.68);
+  color: rgba(244, 255, 251, 0.84);
+  font-size: 10px;
+  font-weight: 950;
+  padding: 6px 9px;
+}
+
+.readout-a {
+  right: 18px;
+  top: 16px;
+}
+
+.readout-b {
+  left: 18px;
+  bottom: 16px;
+}
+
+.track-vector {
+  height: 2px;
+  transform-origin: left center;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--teal-bright), transparent);
+  box-shadow: 0 0 16px rgba(67, 224, 200, 0.28);
+}
+
+.vector-a {
+  left: 31%;
+  top: 29%;
+  width: 34%;
+  transform: rotate(18deg);
+}
+
+.vector-b {
+  right: 21%;
+  bottom: 27%;
+  width: 28%;
+  transform: rotate(-34deg);
+}
+
+.threshold-line {
+  left: 12%;
+  right: 12%;
+  top: 42%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  box-shadow: 0 0 18px rgba(216, 135, 0, 0.28);
+}
+
 .visual-pickle {
   background:
     linear-gradient(90deg, transparent 49%, color-mix(in srgb, var(--project-accent) 42%, transparent) 49% 51%, transparent 51%),
@@ -899,7 +1142,7 @@ nav {
     rgba(12, 24, 34, 0.9);
 }
 
-.visual-audio span {
+.visual-audio .wave-bar {
   width: 14px;
   height: 34%;
   border-radius: 999px;
@@ -907,11 +1150,11 @@ nav {
   animation: wave 1.5s ease-in-out infinite;
 }
 
-.visual-audio span:nth-child(2) { height: 64%; animation-delay: 0.1s; background: var(--blue); }
-.visual-audio span:nth-child(3) { height: 42%; animation-delay: 0.2s; }
-.visual-audio span:nth-child(4) { height: 74%; animation-delay: 0.3s; background: var(--amber); }
-.visual-audio span:nth-child(5) { height: 48%; animation-delay: 0.4s; }
-.visual-audio span:nth-child(6) { height: 58%; animation-delay: 0.5s; background: var(--rose); }
+.visual-audio .wave-bar:nth-of-type(3) { height: 64%; animation-delay: 0.1s; background: var(--blue); }
+.visual-audio .wave-bar:nth-of-type(4) { height: 42%; animation-delay: 0.2s; }
+.visual-audio .wave-bar:nth-of-type(5) { height: 74%; animation-delay: 0.3s; background: var(--amber); }
+.visual-audio .wave-bar:nth-of-type(6) { height: 48%; animation-delay: 0.4s; }
+.visual-audio .wave-bar:nth-of-type(7) { height: 58%; animation-delay: 0.5s; background: var(--rose); }
 
 .visual-waste {
   background:
@@ -967,6 +1210,25 @@ nav {
 .label-c { right: 14%; bottom: 20%; }
 
 @media (prefers-reduced-motion: no-preference) {
+  .signal-scan {
+    animation: signal-sweep 4.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+    animation-delay: var(--signal-delay);
+  }
+
+  .signal-dot::after {
+    animation: signal-ring 2.2s ease-out infinite;
+    animation-delay: var(--signal-delay);
+  }
+
+  .signal-bars i {
+    animation: signal-bar 1.7s ease-in-out infinite;
+  }
+
+  .signal-bars i:nth-child(2) { animation-delay: 0.14s; }
+  .signal-bars i:nth-child(3) { animation-delay: 0.28s; }
+  .signal-bars i:nth-child(4) { animation-delay: 0.42s; }
+  .signal-bars i:nth-child(5) { animation-delay: 0.56s; }
+
   .dot-a {
     animation: player-drift-a 5.6s ease-in-out infinite;
   }
@@ -981,6 +1243,18 @@ nav {
 
   .heat-zone {
     animation: heat-pulse 3.8s ease-in-out infinite;
+  }
+
+  .track-vector {
+    animation: vector-scan 3.2s ease-in-out infinite;
+  }
+
+  .vector-b {
+    animation-delay: 0.45s;
+  }
+
+  .threshold-line {
+    animation: threshold-lock 2.8s ease-in-out infinite;
   }
 
   .sort-line {
@@ -1598,6 +1872,27 @@ nav {
   50% { transform: scale(1.18); opacity: 1; }
 }
 
+@keyframes signal-sweep {
+  0%, 42% { transform: translateX(0) skewX(-18deg); opacity: 0; }
+  56% { opacity: 0.86; }
+  100% { transform: translateX(340%) skewX(-18deg); opacity: 0; }
+}
+
+@keyframes signal-breathe {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateX(0deg); }
+  50% { transform: translate3d(0, -3px, 0) rotateX(2deg); }
+}
+
+@keyframes signal-ring {
+  0% { transform: scale(0.75); opacity: 0.48; }
+  72%, 100% { transform: scale(1.65); opacity: 0; }
+}
+
+@keyframes signal-bar {
+  0%, 100% { transform: scaleY(0.72); opacity: 0.7; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
 @keyframes ledger-scan {
   0%, 35% { transform: translateX(0); opacity: 0; }
   55% { opacity: 1; }
@@ -1632,6 +1927,16 @@ nav {
 @keyframes heat-pulse {
   0%, 100% { transform: scale(0.9); opacity: 0.58; }
   50% { transform: scale(1.12); opacity: 1; }
+}
+
+@keyframes vector-scan {
+  0%, 100% { opacity: 0.42; clip-path: inset(0 82% 0 0); }
+  50% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+
+@keyframes threshold-lock {
+  0%, 100% { transform: translateY(-10px); opacity: 0.36; }
+  50% { transform: translateY(10px); opacity: 1; }
 }
 
 @keyframes sort-sweep {
@@ -1698,7 +2003,7 @@ nav {
     padding-top: 48px;
   }
 
-  .hero-chips,
+  .hero-signals,
   .signal-band,
   .capability-grid,
   .proof-grid {
@@ -1779,7 +2084,7 @@ nav {
     width: 100%;
   }
 
-  .hero-chips,
+  .hero-signals,
   .signal-grid,
   .signal-band,
   .capability-orbit,
@@ -1788,16 +2093,6 @@ nav {
   .proof-ledger,
   .timeline-item {
     grid-template-columns: 1fr;
-  }
-
-  .hero-chips > span,
-  .signal-tile + .signal-tile {
-    border-left: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .hero-chips > span:first-child {
-    border-top: 0;
   }
 
   .avatar-frame {
@@ -2103,9 +2398,10 @@ nav {
     grid-column: 1 / -1;
   }
 
-  .hero-chips {
+  .hero-signals {
     display: flex;
-    gap: 8px;
+    gap: 10px;
+    max-width: none;
     margin: 18px -18px 0;
     border: 0;
     border-radius: 0;
@@ -2116,23 +2412,27 @@ nav {
     scrollbar-width: none;
   }
 
-  .hero-chips::-webkit-scrollbar {
+  .hero-signals::-webkit-scrollbar {
     display: none;
   }
 
-  .hero-chips > span {
-    flex: 0 0 auto;
-    min-width: max-content;
-    border: 1px solid rgba(67, 224, 200, 0.18);
-    border-radius: 999px;
-    background: rgba(67, 224, 200, 0.07);
-    color: #dffbf4;
-    padding: 10px 13px 10px 27px;
+  .signal-module {
+    flex: 0 0 min(74vw, 260px);
+    border-radius: 16px;
+    padding: 13px;
     scroll-snap-align: start;
   }
 
-  .hero-chips > span + span {
-    border-top: 1px solid rgba(67, 224, 200, 0.18);
+  .signal-module-head strong {
+    font-size: 12px;
+  }
+
+  .signal-module-head em {
+    font-size: 8px;
+  }
+
+  .signal-module p {
+    white-space: normal;
   }
 
   .avatar-command {

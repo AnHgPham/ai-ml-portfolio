@@ -146,6 +146,17 @@ export default function GlobalInteractions() {
               ease: "power4.out",
             });
 
+            gsap.from(".signal-module", {
+              y: 24,
+              autoAlpha: 0,
+              rotateX: -12,
+              transformPerspective: 900,
+              duration: 0.9,
+              stagger: 0.08,
+              ease: "power4.out",
+              delay: 0.36,
+            });
+
             gsap.from(".signal-tile", {
               y: 18,
               opacity: 0,
@@ -179,11 +190,12 @@ export default function GlobalInteractions() {
 
               gsap.fromTo(
                 story,
-                { y: 72, autoAlpha: 0.42, scale: 0.982 },
+                { y: 72, autoAlpha: 0.42, scale: 0.982, rotateX: 1.8 },
                 {
                   y: 0,
                   autoAlpha: 1,
                   scale: 1,
+                  rotateX: 0,
                   ease: "none",
                   scrollTrigger: {
                     trigger: story,
@@ -303,6 +315,15 @@ export default function GlobalInteractions() {
               ease: "power3.out",
             });
 
+            gsap.from(".signal-module", {
+              x: 18,
+              autoAlpha: 0.82,
+              duration: 0.55,
+              stagger: 0.06,
+              ease: "power3.out",
+              delay: 0.18,
+            });
+
             gsap.from(".mobile-command-dock", {
               y: 34,
               autoAlpha: 0,
@@ -373,6 +394,7 @@ export default function GlobalInteractions() {
 
         mm.add("(pointer: fine)", () => {
           const magneticItems = document.querySelectorAll<HTMLElement>("[data-magnetic]");
+          const signalItems = document.querySelectorAll<HTMLElement>(".signal-module");
           const onPointerMove = (event: PointerEvent) => {
             const item = event.currentTarget as HTMLElement;
             const rect = item.getBoundingClientRect();
@@ -383,15 +405,45 @@ export default function GlobalInteractions() {
           const onPointerLeave = (event: PointerEvent) => {
             gsap.to(event.currentTarget, { x: 0, y: 0, duration: 0.45, ease: "elastic.out(1, 0.45)" });
           };
+          const onSignalMove = (event: PointerEvent) => {
+            const item = event.currentTarget as HTMLElement;
+            const rect = item.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+            gsap.to(item, {
+              rotateX: y * -8,
+              rotateY: x * 10,
+              y: -4,
+              duration: 0.32,
+              ease: "power3.out",
+            });
+          };
+          const onSignalLeave = (event: PointerEvent) => {
+            gsap.to(event.currentTarget, {
+              rotateX: 0,
+              rotateY: 0,
+              y: 0,
+              duration: 0.55,
+              ease: "elastic.out(1, 0.42)",
+            });
+          };
           magneticItems.forEach((item) => {
             item.addEventListener("pointermove", onPointerMove);
             item.addEventListener("pointerleave", onPointerLeave);
+          });
+          signalItems.forEach((item) => {
+            item.addEventListener("pointermove", onSignalMove);
+            item.addEventListener("pointerleave", onSignalLeave);
           });
 
           return () => {
             magneticItems.forEach((item) => {
               item.removeEventListener("pointermove", onPointerMove);
               item.removeEventListener("pointerleave", onPointerLeave);
+            });
+            signalItems.forEach((item) => {
+              item.removeEventListener("pointermove", onSignalMove);
+              item.removeEventListener("pointerleave", onSignalLeave);
             });
           };
         });

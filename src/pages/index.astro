@@ -36,6 +36,58 @@ const signalBand = [
   },
 ];
 
+const heroSignals = [
+  {
+    key: "detect",
+    label: "YOLO",
+    viLabel: "YOLO",
+    state: "detect",
+    viState: "detect",
+    detail: "pose / object",
+    viDetail: "pose / object",
+    metric: "bbox",
+    viMetric: "bbox",
+    bars: [62, 84, 70],
+  },
+  {
+    key: "track",
+    label: "OpenCV",
+    viLabel: "OpenCV",
+    state: "track",
+    viState: "track",
+    detail: "geometry + motion",
+    viDetail: "hình học + chuyển động",
+    metric: "fps",
+    viMetric: "fps",
+    bars: [44, 68, 88],
+  },
+  {
+    key: "infer",
+    label: "Real-time inference",
+    viLabel: "Inference thời gian thực",
+    state: "infer",
+    viState: "infer",
+    detail: "low-latency loop",
+    viDetail: "vòng lặp độ trễ thấp",
+    metric: "live",
+    viMetric: "live",
+    bars: [35, 76, 52, 92, 64],
+    highlight: true,
+  },
+  {
+    key: "reproduce",
+    label: "Reproducible runs",
+    viLabel: "Chạy tái lập",
+    state: "reproduce",
+    viState: "tái lập",
+    detail: "runbooks + repos",
+    viDetail: "runbook + repo",
+    metric: "git",
+    viMetric: "git",
+    bars: [58, 58, 58],
+  },
+];
+
 const proofCards = [
   {
     icon: ShieldCheck,
@@ -145,11 +197,40 @@ const proofCards = [
             </a>
           </div>
 
-          <div class="hero-chips" aria-hidden="true" data-intro>
-            <span>YOLO</span>
-            <span>OpenCV</span>
-            <span><span data-copy="en">Real-time inference</span><span data-copy="vi">Inference thời gian thực</span></span>
-            <span><span data-copy="en">Reproducible runs</span><span data-copy="vi">Chạy tái lập</span></span>
+          <div class="hero-signals" aria-label="Live ML signal strip" data-intro data-signal-strip>
+            {heroSignals.map((signal, index) => (
+              <article
+                class:list={["signal-module", signal.highlight && "signal-module-live"]}
+                data-signal={signal.key}
+                style={`--signal-delay: ${index * 0.12}s;`}
+              >
+                <span class="signal-scan" aria-hidden="true"></span>
+                <div class="signal-module-head">
+                  <span class="signal-dot" aria-hidden="true"></span>
+                  <strong>
+                    <span data-copy="en">{signal.label}</span>
+                    <span data-copy="vi">{signal.viLabel}</span>
+                  </strong>
+                  <em>
+                    <span data-copy="en">{signal.state}</span>
+                    <span data-copy="vi">{signal.viState}</span>
+                  </em>
+                </div>
+                <p>
+                  <span data-copy="en">{signal.detail}</span>
+                  <span data-copy="vi">{signal.viDetail}</span>
+                </p>
+                <div class="signal-module-foot">
+                  <span>
+                    <span data-copy="en">{signal.metric}</span>
+                    <span data-copy="vi">{signal.viMetric}</span>
+                  </span>
+                  <div class="signal-bars" aria-hidden="true">
+                    {signal.bars.map((bar) => <i style={`--bar-level: ${bar}%;`}></i>)}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
 
@@ -218,26 +299,38 @@ const proofCards = [
             <div class="story-visual" aria-hidden="true">
               {project.id === "pickleball" && (
                 <div class="visual-pickle">
+                  <span class="algorithm-kicker">detect.track.project</span>
                   <span class="court-line line-a"></span>
                   <span class="court-line line-b"></span>
                   <span class="player-dot dot-a"></span>
                   <span class="player-dot dot-b"></span>
                   <span class="ball-path"></span>
                   <span class="heat-zone"></span>
+                  <span class="track-vector vector-a"></span>
+                  <span class="track-vector vector-b"></span>
+                  <span class="algorithm-readout readout-a">homography</span>
+                  <span class="algorithm-readout readout-b">kalman</span>
                 </div>
               )}
               {project.id === "kws" && (
                 <div class="visual-audio">
-                  <span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span class="algorithm-kicker">stream.segment.reject</span>
+                  <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                  <i class="threshold-line"></i>
+                  <span class="algorithm-readout readout-a">threshold</span>
+                  <span class="algorithm-readout readout-b">open-set</span>
                 </div>
               )}
               {project.id === "waste" && (
                 <div class="visual-waste">
+                  <span class="algorithm-kicker">classify.route.export</span>
                   <span class="bin"></span>
                   <span class="sort-line"></span>
                   <span class="label label-a"><span data-copy="en">paper</span><span data-copy="vi">giấy</span></span>
                   <span class="label label-b"><span data-copy="en">metal</span><span data-copy="vi">kim loại</span></span>
                   <span class="label label-c"><span data-copy="en">plastic</span><span data-copy="vi">nhựa</span></span>
+                  <span class="algorithm-readout readout-a">MobileNetV2</span>
+                  <span class="algorithm-readout readout-b">TFLite</span>
                 </div>
               )}
             </div>
