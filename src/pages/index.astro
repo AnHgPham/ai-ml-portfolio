@@ -42,7 +42,7 @@ const proofCards = [
     title: "Focused positioning",
     viTitle: "Định vị rõ ràng",
     text: "AI/ML and Computer Vision are the primary message across the site and GitHub profile.",
-    viText: "AI/ML và Computer Vision là thông điệp chính trên website và GitHub profile.",
+    viText: "AI/ML và Computer Vision là thông điệp chính trên website và hồ sơ GitHub.",
   },
   {
     icon: GitBranch,
@@ -298,14 +298,28 @@ const proofCards = [
           <span data-copy="vi">Bộ công cụ gọn cho applied ML và computer vision.</span>
         </h2>
       </div>
-      <div class="capability-grid">
-        {capabilityGroups.map((item, index) => (
-          <article data-reveal>
-            <span class="capability-index">0{index + 1}</span>
-            <h3><span data-copy="en">{item.title}</span><span data-copy="vi">{item.viTitle}</span></h3>
-            <p><span data-copy="en">{item.text}</span><span data-copy="vi">{item.vi}</span></p>
-          </article>
-        ))}
+      <div class="stack-lab" data-reveal>
+        <div class="stack-core" aria-hidden="true">
+          <span class="stack-ring ring-one"></span>
+          <span class="stack-ring ring-two"></span>
+          <span class="stack-ring ring-three"></span>
+          <span class="stack-pulse"></span>
+          <strong>ML</strong>
+          <em>CV</em>
+        </div>
+        <div class="capability-grid capability-orbit">
+          {capabilityGroups.map((item, index) => (
+            <article data-reveal>
+              <span class="capability-index">
+                <span data-copy="en">Layer</span>
+                <span data-copy="vi">Tầng</span>
+                {" "}0{index + 1}
+              </span>
+              <h3><span data-copy="en">{item.title}</span><span data-copy="vi">{item.viTitle}</span></h3>
+              <p><span data-copy="en">{item.text}</span><span data-copy="vi">{item.vi}</span></p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -320,11 +334,12 @@ const proofCards = [
           <span data-copy="vi">Đường dẫn ngắn từ hồ sơ đến bằng chứng kỹ thuật.</span>
         </h2>
       </div>
-      <div class="proof-grid">
-        {proofCards.map((card) => {
+      <div class="proof-grid proof-chain">
+        {proofCards.map((card, index) => {
           const Icon = card.icon;
           return (
             <article data-reveal>
+              <span class="proof-step">0{index + 1}</span>
               <Icon size={22} aria-hidden="true" />
               <h3><span data-copy="en">{card.title}</span><span data-copy="vi">{card.viTitle}</span></h3>
               <p><span data-copy="en">{card.text}</span><span data-copy="vi">{card.viText}</span></p>
@@ -332,29 +347,42 @@ const proofCards = [
           );
         })}
       </div>
+      <div class="proof-ledger" data-reveal>
+        <span><span data-copy="en">Source-first</span><span data-copy="vi">Ưu tiên nguồn gốc</span></span>
+        <span><span data-copy="en">Repo-backed</span><span data-copy="vi">Có repo kiểm tra</span></span>
+        <span><span data-copy="en">Demo-visible</span><span data-copy="vi">Có demo để xem</span></span>
+      </div>
     </section>
 
     <section class="section profile-section" id="profile">
-      <div class="profile-summary" data-reveal>
-        <p class="eyebrow"><span data-copy="en">Profile</span><span data-copy="vi">Hồ sơ</span></p>
-        <h2>
-          <span data-copy="en">ICT student preparing for AI/ML internship roles.</span>
-          <span data-copy="vi">Sinh viên ICT hướng tới vai trò AI/ML Intern.</span>
-        </h2>
-        <p>
-          <span data-copy="en">
-            I prefer practical ML work: define a target, train and evaluate the model, ship a runnable demo,
-            then document the workflow so others can reproduce it.
-          </span>
-          <span data-copy="vi">
-            Tôi phù hợp với công việc ML thực tế: xác định mục tiêu, train và đánh giá model,
-            làm demo chạy được, rồi viết tài liệu để người khác có thể tái lập.
-          </span>
-        </p>
+      <div class="profile-console" data-reveal>
+        <div class="profile-summary">
+          <p class="eyebrow"><span data-copy="en">Profile</span><span data-copy="vi">Hồ sơ</span></p>
+          <h2>
+            <span data-copy="en">ICT student preparing for AI/ML internship roles.</span>
+            <span data-copy="vi">Sinh viên ICT hướng tới vai trò AI/ML Intern.</span>
+          </h2>
+          <p>
+            <span data-copy="en">
+              I prefer practical ML work: define a target, train and evaluate the model, ship a runnable demo,
+              then document the workflow so others can reproduce it.
+            </span>
+            <span data-copy="vi">
+              Tôi phù hợp với công việc ML thực tế: xác định mục tiêu, train và đánh giá model,
+              làm demo chạy được, rồi viết tài liệu để người khác có thể tái lập.
+            </span>
+          </p>
+        </div>
+        <div class="profile-focus" aria-label="Focus areas">
+          <span><span data-copy="en">Learning mode</span><span data-copy="vi">Chế độ học</span></span>
+          <strong><span data-copy="en">Build, measure, explain</span><span data-copy="vi">Làm, đo, giải thích</span></strong>
+          <small><span data-copy="en">Current direction: production-minded ML demos.</span><span data-copy="vi">Định hướng hiện tại: demo ML có tư duy triển khai.</span></small>
+        </div>
       </div>
-      <div class="timeline">
-        {timeline.map((item) => (
+      <div class="timeline trajectory-timeline">
+        {timeline.map((item, index) => (
           <article class="timeline-item" data-reveal>
+            <span class="timeline-node" aria-hidden="true">0{index + 1}</span>
             <time>{item.period}</time>
             <div>
               <h3><span data-copy="en">{item.title}</span><span data-copy="vi">{item.viTitle}</span></h3>
@@ -376,6 +404,11 @@ const proofCards = [
           <span data-copy="en">For internships, applied ML projects, or computer vision collaboration, contact me by email or LinkedIn.</span>
           <span data-copy="vi">Liên hệ qua email hoặc LinkedIn cho internship, project applied ML hoặc hợp tác computer vision.</span>
         </p>
+      </div>
+      <div class="contact-status" aria-label="Availability">
+        <span class="status-dot" aria-hidden="true"></span>
+        <strong><span data-copy="en">Available for internship review</span><span data-copy="vi">Sẵn sàng để recruiter xem hồ sơ</span></strong>
+        <small><span data-copy="en">Best fit: AI/ML, Computer Vision, Python workflows.</span><span data-copy="vi">Phù hợp nhất: AI/ML, Computer Vision, workflow Python.</span></small>
       </div>
       <div class="contact-actions">
         <a class="button button-primary" href={`mailto:${profile.email}`} data-magnetic>

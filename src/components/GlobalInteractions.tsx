@@ -226,7 +226,7 @@ export default function GlobalInteractions() {
           gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((item) => {
             gsap.fromTo(
               item,
-              { y: 42, autoAlpha: 0 },
+              { y: 42, autoAlpha: 0.2 },
               {
                 y: 0,
                 autoAlpha: 1,
