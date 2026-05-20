@@ -665,13 +665,14 @@ nav {
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 100%;
+  width: clamp(260px, 22vw, 330px);
+  max-width: 82%;
 }
 
 .avatar-frame img {
-  width: auto;
-  max-width: min(78%, 340px);
-  height: 380px;
+  display: block;
+  width: 100%;
+  height: auto;
   border-radius: var(--radius);
   object-fit: contain;
   object-position: center;
@@ -2815,9 +2816,14 @@ nav {
     padding: 18px;
   }
 
+  .avatar-frame picture {
+    width: min(82%, 280px);
+    max-width: 82%;
+  }
+
   .avatar-frame img {
-    max-width: min(76%, 250px);
-    height: 300px;
+    width: 100%;
+    height: auto;
   }
 
   .signal-band article + article,
@@ -3233,10 +3239,14 @@ nav {
     padding: 14px;
   }
 
+  .avatar-frame picture {
+    width: min(96%, 170px);
+    max-width: 96%;
+  }
+
   .avatar-frame img {
-    width: auto;
-    max-width: 92%;
-    height: 220px;
+    width: 100%;
+    height: auto;
     object-fit: contain;
   }
 
