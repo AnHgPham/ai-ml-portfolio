@@ -13,20 +13,20 @@ const signalBand = [
   {
     heading: "ML workflows",
     viHeading: "Workflow ML",
-    text: "Training, evaluation, inference, documentation",
-    viText: "Training, evaluation, inference, tài liệu",
+    text: "Training, evaluation, inference, algorithm evidence",
+    viText: "Training, evaluation, inference, bằng chứng thuật toán",
   },
   {
     heading: "Computer vision",
     viHeading: "Computer vision",
-    text: "YOLO, OpenCV, keypoints, tracking, homography",
-    viText: "YOLO, OpenCV, keypoints, tracking, homography",
+    text: "Detection, tracking, homography, visual review",
+    viText: "Detection, tracking, homography, kiểm tra trực quan",
   },
   {
-    heading: "Deployment path",
-    viHeading: "Hướng triển khai",
-    text: "Colab, Linux CLI, Azure VM, Google Cloud, Git",
-    viText: "Colab, Linux CLI, Azure VM, Google Cloud, Git",
+    heading: "Streaming logic",
+    viHeading: "Logic streaming",
+    text: "Windowing, thresholds, voting, rejection gates",
+    viText: "Windowing, threshold, voting, cổng từ chối",
   },
   {
     heading: "Evidence",
@@ -91,24 +91,31 @@ const heroSignals = [
 const proofCards = [
   {
     icon: ShieldCheck,
-    title: "Focused positioning",
-    viTitle: "Định vị rõ ràng",
-    text: "AI/ML and Computer Vision are the primary message across the site and GitHub profile.",
-    viText: "AI/ML và Computer Vision là thông điệp chính trên website và hồ sơ GitHub.",
+    title: "Repo-backed systems",
+    viTitle: "Hệ thống có repo kiểm tra",
+    text: "Each selected project links to source code and a concrete implementation path.",
+    viText: "Mỗi project chính đều có link source code và hướng triển khai cụ thể.",
   },
   {
     icon: GitBranch,
-    title: "GitHub readiness",
-    viTitle: "GitHub sẵn sàng để xem",
-    text: "Repo links, project summaries, and pinned repo guidance are prepared for quick review.",
-    viText: "Link repo, tóm tắt dự án và gợi ý pin repo đã được chuẩn bị để recruiter xem nhanh.",
+    title: "Algorithmic clarity",
+    viTitle: "Thuật toán rõ ràng",
+    text: "Project evidence is presented as pipelines: detect, track, threshold, rank, reject, export.",
+    viText: "Bằng chứng project được trình bày theo pipeline: detect, track, threshold, rank, reject, export.",
   },
   {
     icon: FileDown,
-    title: "Recruiter package",
-    viTitle: "Bộ thông tin cho recruiter",
-    text: "CV, LinkedIn, email, and selected repos are one click away. Phone number stays private.",
-    viText: "CV, LinkedIn, email và các repo chọn lọc đều truy cập nhanh. Số điện thoại không hiển thị công khai.",
+    title: "Review package",
+    viTitle: "Bộ hồ sơ để review",
+    text: "CV, LinkedIn, email, selected repos, and demo links are reachable without friction.",
+    viText: "CV, LinkedIn, email, repo chọn lọc và link demo đều dễ truy cập.",
+  },
+  {
+    icon: Play,
+    title: "Demo-visible work",
+    viTitle: "Dự án có demo để xem",
+    text: "The portfolio favors visible outputs: annotated video, streaming flow, webcam labels, and evaluation artifacts.",
+    viText: "Portfolio ưu tiên output nhìn được: video annotate, flow streaming, label webcam và artifact đánh giá.",
   },
 ];
 ---
@@ -287,8 +294,8 @@ const proofCards = [
           <span data-copy="vi">Dự án chọn lọc</span>
         </p>
         <h2>
-          <span data-copy="en">Case studies with clear problem, approach, and evidence.</span>
-          <span data-copy="vi">Case study có vấn đề, cách làm và bằng chứng rõ ràng.</span>
+          <span data-copy="en">Case studies built as readable algorithm systems.</span>
+          <span data-copy="vi">Case study được trình bày như hệ thống thuật toán dễ đọc.</span>
         </h2>
       </div>
 
@@ -308,6 +315,9 @@ const proofCards = [
                   <span class="heat-zone"></span>
                   <span class="track-vector vector-a"></span>
                   <span class="track-vector vector-b"></span>
+                  {Array.from({ length: 12 }, (_, pointIndex) => (
+                    <span class={`court-point point-${pointIndex + 1}`}></span>
+                  ))}
                   <span class="algorithm-readout readout-a">homography</span>
                   <span class="algorithm-readout readout-b">kalman</span>
                 </div>
@@ -315,6 +325,9 @@ const proofCards = [
               {project.id === "kws" && (
                 <div class="visual-audio">
                   <span class="algorithm-kicker">stream.segment.reject</span>
+                  <span class="audio-window window-a"></span>
+                  <span class="audio-window window-b"></span>
+                  <span class="audio-window window-c"></span>
                   <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
                   <i class="threshold-line"></i>
                   <span class="algorithm-readout readout-a">threshold</span>
@@ -329,6 +342,11 @@ const proofCards = [
                   <span class="label label-a"><span data-copy="en">paper</span><span data-copy="vi">giấy</span></span>
                   <span class="label label-b"><span data-copy="en">metal</span><span data-copy="vi">kim loại</span></span>
                   <span class="label label-c"><span data-copy="en">plastic</span><span data-copy="vi">nhựa</span></span>
+                  <div class="confidence-stack">
+                    <span style="--confidence: 82%;">organic</span>
+                    <span style="--confidence: 58%;">plastic</span>
+                    <span style="--confidence: 34%;">paper</span>
+                  </div>
                   <span class="algorithm-readout readout-a">MobileNetV2</span>
                   <span class="algorithm-readout readout-b">TFLite</span>
                 </div>
@@ -357,6 +375,51 @@ const proofCards = [
                   <dd><span data-copy="en">{project.evidence}</span><span data-copy="vi">{project.viEvidence}</span></dd>
                 </div>
               </dl>
+              <section class="algorithm-panel" aria-label={`${project.title} algorithm pipeline`} data-algorithm-panel>
+                <div class="algorithm-panel-head">
+                  <span class="algorithm-label">
+                    <span data-copy="en">Algorithm system</span>
+                    <span data-copy="vi">Hệ thống thuật toán</span>
+                  </span>
+                  <strong>
+                    <span data-copy="en">{project.signals.headline}</span>
+                    <span data-copy="vi">{project.signals.viHeadline}</span>
+                  </strong>
+                </div>
+                <ol class="algorithm-flow">
+                  {project.algorithmFlow.map((step, stepIndex) => (
+                    <li data-algorithm-step={step.key} style={`--step-index: ${stepIndex};`}>
+                      <span class="flow-node">0{stepIndex + 1}</span>
+                      <div>
+                        <span class="flow-label">
+                          <span data-copy="en">{step.label}</span>
+                          <span data-copy="vi">{step.viLabel}</span>
+                        </span>
+                        <strong>
+                          <span data-copy="en">{step.algorithm}</span>
+                          <span data-copy="vi">{step.viAlgorithm}</span>
+                        </strong>
+                        <p>
+                          <span data-copy="en">{step.detail}</span>
+                          <span data-copy="vi">{step.viDetail}</span>
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                <div class="algorithm-ledger">
+                  <span>
+                    <span data-copy="en">{project.signals.complexity}</span>
+                    <span data-copy="vi">{project.signals.viComplexity}</span>
+                  </span>
+                  {project.signals.evidence.map((item, itemIndex) => (
+                    <span>
+                      <span data-copy="en">{item}</span>
+                      <span data-copy="vi">{project.signals.viEvidence[itemIndex]}</span>
+                    </span>
+                  ))}
+                </div>
+              </section>
               <div class="stack-tags">
                 {project.stack.map((tag) => <span>{tag}</span>)}
               </div>
@@ -387,8 +450,8 @@ const proofCards = [
           <span data-copy="vi">Kỹ năng kỹ thuật</span>
         </p>
         <h2>
-          <span data-copy="en">Focused tools for applied ML and computer vision.</span>
-          <span data-copy="vi">Bộ công cụ gọn cho applied ML và computer vision.</span>
+          <span data-copy="en">ML systems map from model to inference evidence.</span>
+          <span data-copy="vi">Bản đồ hệ thống ML từ model đến bằng chứng inference.</span>
         </h2>
       </div>
       <div class="stack-lab" data-reveal>
@@ -423,8 +486,8 @@ const proofCards = [
           <span data-copy="vi">Bằng chứng cho recruiter</span>
         </p>
         <h2>
-          <span data-copy="en">A short path from profile to technical evidence.</span>
-          <span data-copy="vi">Đường dẫn ngắn từ hồ sơ đến bằng chứng kỹ thuật.</span>
+          <span data-copy="en">An evidence ledger for fast technical review.</span>
+          <span data-copy="vi">Evidence ledger để recruiter review kỹ thuật nhanh.</span>
         </h2>
       </div>
       <div class="proof-grid proof-chain">

@@ -168,7 +168,7 @@ export default function GlobalInteractions() {
 
             gsap.fromTo(
               ".signal-band article",
-              { y: 28, autoAlpha: 0.52 },
+              { y: 24, autoAlpha: 0.92 },
               {
                 y: 0,
                 autoAlpha: 1,
@@ -187,10 +187,12 @@ export default function GlobalInteractions() {
               const visual = story.querySelector<HTMLElement>(".story-visual");
               const visualCore = story.querySelector<HTMLElement>(".visual-pickle, .visual-audio, .visual-waste");
               const contentItems = story.querySelectorAll<HTMLElement>(".story-content > *");
+              const algorithmSteps = story.querySelectorAll<HTMLElement>(".algorithm-flow li");
+              const algorithmLedger = story.querySelectorAll<HTMLElement>(".algorithm-ledger > span");
 
               gsap.fromTo(
                 story,
-                { y: 72, autoAlpha: 0.42, scale: 0.982, rotateX: 1.8 },
+                { y: 58, autoAlpha: 0.92, scale: 0.99, rotateX: 1.2 },
                 {
                   y: 0,
                   autoAlpha: 1,
@@ -239,7 +241,7 @@ export default function GlobalInteractions() {
 
               gsap.fromTo(
                 contentItems,
-                { y: 24, autoAlpha: 0.08 },
+                { y: 20, autoAlpha: 0.92 },
                 {
                   y: 0,
                   autoAlpha: 1,
@@ -250,6 +252,41 @@ export default function GlobalInteractions() {
                     start: "top 82%",
                     end: "top 48%",
                     scrub: 0.85,
+                  },
+                },
+              );
+
+              gsap.fromTo(
+                algorithmSteps,
+                { y: 16, autoAlpha: 0.92, scale: 0.99 },
+                {
+                  y: 0,
+                  autoAlpha: 1,
+                  scale: 1,
+                  stagger: 0.08,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: story,
+                    start: "top 76%",
+                    end: "top 38%",
+                    scrub: 0.7,
+                  },
+                },
+              );
+
+              gsap.fromTo(
+                algorithmLedger,
+                { y: 10, autoAlpha: 0.92 },
+                {
+                  y: 0,
+                  autoAlpha: 1,
+                  stagger: 0.04,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: story,
+                    start: "top 70%",
+                    end: "top 42%",
+                    scrub: 0.6,
                   },
                 },
               );
@@ -265,7 +302,7 @@ export default function GlobalInteractions() {
             gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((item) => {
               gsap.fromTo(
                 item,
-                { y: 42, autoAlpha: 0.2 },
+                { y: 34, autoAlpha: 0.92 },
                 {
                   y: 0,
                   autoAlpha: 1,
@@ -283,7 +320,7 @@ export default function GlobalInteractions() {
             gsap.utils.toArray<HTMLElement>(".capability-grid article, .proof-grid article, .timeline-item").forEach((item) => {
               gsap.fromTo(
                 item,
-                { y: 34, autoAlpha: 0.28, scale: 0.985 },
+                { y: 28, autoAlpha: 0.92, scale: 0.99 },
                 {
                   y: 0,
                   autoAlpha: 1,
@@ -335,7 +372,7 @@ export default function GlobalInteractions() {
             gsap.utils.toArray<HTMLElement>(".project-story, .stack-lab, .proof-chain article, .profile-console, .timeline-item, .contact-band").forEach((item) => {
               gsap.fromTo(
                 item,
-                { y: 32, autoAlpha: 0.78, scale: 0.992 },
+                { y: 32, autoAlpha: 0.92, scale: 0.992 },
                 {
                   y: 0,
                   autoAlpha: 1,
@@ -346,6 +383,24 @@ export default function GlobalInteractions() {
                     start: "top 94%",
                     end: "top 70%",
                     scrub: 0.7,
+                  },
+                },
+              );
+            });
+
+            gsap.utils.toArray<HTMLElement>(".algorithm-flow li, .algorithm-ledger > span").forEach((item) => {
+              gsap.fromTo(
+                item,
+                { y: 16, autoAlpha: 0.92 },
+                {
+                  y: 0,
+                  autoAlpha: 1,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: item,
+                    start: "top 94%",
+                    end: "top 78%",
+                    scrub: 0.55,
                   },
                 },
               );
@@ -371,7 +426,7 @@ export default function GlobalInteractions() {
             gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((item) => {
               gsap.fromTo(
                 item,
-                { y: 24, autoAlpha: 0.82 },
+                { y: 24, autoAlpha: 0.92 },
                 {
                   y: 0,
                   autoAlpha: 1,
