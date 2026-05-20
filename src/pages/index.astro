@@ -431,6 +431,28 @@ const proofCards = [
     </section>
   </main>
 
+  <nav class="mobile-command-dock" aria-label="Mobile quick actions">
+    <a href="#work">
+      <Rocket size={15} aria-hidden="true" />
+      <span data-copy="en">Work</span>
+      <span data-copy="vi">Dự án</span>
+    </a>
+    <a href={profile.cv} target="_blank" rel="noreferrer">
+      <FileDown size={15} aria-hidden="true" />
+      <span data-copy="en">CV</span>
+      <span data-copy="vi">CV</span>
+    </a>
+    <a href="#contact">
+      <Mail size={15} aria-hidden="true" />
+      <span data-copy="en">Contact</span>
+      <span data-copy="vi">Liên hệ</span>
+    </a>
+    <a href={profile.github} target="_blank" rel="me noreferrer">
+      <ExternalLink size={15} aria-hidden="true" />
+      GitHub
+    </a>
+  </nav>
+
   <footer class="site-footer">
     <p>
       &copy; 2026 {profile.name}. <span data-copy="en">All rights reserved.</span><span data-copy="vi">Mọi quyền được bảo lưu.</span>
