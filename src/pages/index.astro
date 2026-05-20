@@ -8,6 +8,57 @@ import { capabilityGroups, profile, projects, proofSignals, timeline } from "../
 const title = "Phạm Hoàng An | AI/ML Portfolio";
 const description =
   "AI/ML portfolio for Phạm Hoàng An, focused on computer vision, YOLO pipelines, keyword spotting, and applied ML systems.";
+
+const signalBand = [
+  {
+    heading: "ML workflows",
+    viHeading: "Workflow ML",
+    text: "Training, evaluation, inference, documentation",
+    viText: "Training, evaluation, inference, tài liệu",
+  },
+  {
+    heading: "Computer vision",
+    viHeading: "Computer vision",
+    text: "YOLO, OpenCV, keypoints, tracking, homography",
+    viText: "YOLO, OpenCV, keypoints, tracking, homography",
+  },
+  {
+    heading: "Deployment path",
+    viHeading: "Hướng triển khai",
+    text: "Colab, Linux CLI, Azure VM, Google Cloud, Git",
+    viText: "Colab, Linux CLI, Azure VM, Google Cloud, Git",
+  },
+  {
+    heading: "Evidence",
+    viHeading: "Bằng chứng",
+    text: "Repos, runbooks, metrics, demos",
+    viText: "Repo, runbook, metric, demo",
+  },
+];
+
+const proofCards = [
+  {
+    icon: ShieldCheck,
+    title: "Focused positioning",
+    viTitle: "Định vị rõ ràng",
+    text: "AI/ML and Computer Vision are the primary message across the site and GitHub profile.",
+    viText: "AI/ML và Computer Vision là thông điệp chính trên website và GitHub profile.",
+  },
+  {
+    icon: GitBranch,
+    title: "GitHub readiness",
+    viTitle: "GitHub sẵn sàng để xem",
+    text: "Repo links, project summaries, and pinned repo guidance are prepared for quick review.",
+    viText: "Link repo, tóm tắt dự án và gợi ý pin repo đã được chuẩn bị để recruiter xem nhanh.",
+  },
+  {
+    icon: FileDown,
+    title: "Recruiter package",
+    viTitle: "Bộ thông tin cho recruiter",
+    text: "CV, LinkedIn, email, and selected repos are one click away. Phone number stays private.",
+    viText: "CV, LinkedIn, email và các repo chọn lọc đều truy cập nhanh. Số điện thoại không hiển thị công khai.",
+  },
+];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -72,7 +123,7 @@ const description =
               My work connects training, evaluation, demos, and clear documentation.
             </span>
             <span data-copy="vi">
-              Sinh viên ICT tại USTH, tập trung computer vision, real-time inference và workflow Python có thể tái lập.
+              Sinh viên ICT tại USTH, tập trung computer vision, inference thời gian thực và workflow Python có thể tái lập.
               Tôi kết nối training, evaluation, demo và tài liệu rõ ràng.
             </span>
           </p>
@@ -97,8 +148,8 @@ const description =
           <div class="hero-chips" aria-hidden="true" data-intro>
             <span>YOLO</span>
             <span>OpenCV</span>
-            <span>Real-time inference</span>
-            <span>Reproducible runs</span>
+            <span><span data-copy="en">Real-time inference</span><span data-copy="vi">Inference thời gian thực</span></span>
+            <span><span data-copy="en">Reproducible runs</span><span data-copy="vi">Chạy tái lập</span></span>
           </div>
         </div>
 
@@ -122,7 +173,10 @@ const description =
               <span data-copy="vi">Tóm tắt</span>
             </p>
             <h2>{profile.name}</h2>
-            <p>{profile.role} - {profile.location}</p>
+            <p>
+              <span data-copy="en">{profile.role} - {profile.location}</span>
+              <span data-copy="vi">{profile.viRole} - {profile.viLocation}</span>
+            </p>
           </div>
           <dl class="signal-grid">
             {proofSignals.slice(0, 3).map((signal) => (
@@ -137,15 +191,10 @@ const description =
     </section>
 
     <section class="signal-band" aria-label="Verification signals" data-reveal>
-      {[
-        ["ML workflows", "Training, evaluation, inference, documentation"],
-        ["Computer vision", "YOLO, OpenCV, keypoints, tracking, homography"],
-        ["Deployment path", "Colab, Linux CLI, Azure VM, Google Cloud, Git"],
-        ["Evidence", "Repos, runbooks, metrics, demos"],
-      ].map(([heading, text]) => (
+      {signalBand.map((item) => (
         <article>
-          <strong>{heading}</strong>
-          <span>{text}</span>
+          <strong><span data-copy="en">{item.heading}</span><span data-copy="vi">{item.viHeading}</span></strong>
+          <span><span data-copy="en">{item.text}</span><span data-copy="vi">{item.viText}</span></span>
         </article>
       ))}
     </section>
@@ -186,30 +235,35 @@ const description =
                 <div class="visual-waste">
                   <span class="bin"></span>
                   <span class="sort-line"></span>
-                  <span class="label label-a">paper</span>
-                  <span class="label label-b">metal</span>
-                  <span class="label label-c">plastic</span>
+                  <span class="label label-a"><span data-copy="en">paper</span><span data-copy="vi">giấy</span></span>
+                  <span class="label label-b"><span data-copy="en">metal</span><span data-copy="vi">kim loại</span></span>
+                  <span class="label label-c"><span data-copy="en">plastic</span><span data-copy="vi">nhựa</span></span>
                 </div>
               )}
             </div>
             <div class="story-content">
-              <p class="project-type">{project.type}</p>
-              <h3>{project.title}</h3>
+              <p class="project-type">
+                <span data-copy="en">{project.type}</span>
+                <span data-copy="vi">{project.viType}</span>
+              </p>
+              <h3>
+                <span data-copy="en">{project.title}</span>
+                <span data-copy="vi">{project.viTitle}</span>
+              </h3>
               <dl class="story-grid">
                 <div>
-                  <dt>Problem</dt>
-                  <dd>{project.problem}</dd>
+                  <dt><span data-copy="en">Problem</span><span data-copy="vi">Vấn đề</span></dt>
+                  <dd><span data-copy="en">{project.problem}</span><span data-copy="vi">{project.viProblem}</span></dd>
                 </div>
                 <div>
-                  <dt>Approach</dt>
-                  <dd>{project.approach}</dd>
+                  <dt><span data-copy="en">Approach</span><span data-copy="vi">Cách làm</span></dt>
+                  <dd><span data-copy="en">{project.approach}</span><span data-copy="vi">{project.viApproach}</span></dd>
                 </div>
                 <div>
-                  <dt>Evidence</dt>
-                  <dd>{project.evidence}</dd>
+                  <dt><span data-copy="en">Evidence</span><span data-copy="vi">Bằng chứng</span></dt>
+                  <dd><span data-copy="en">{project.evidence}</span><span data-copy="vi">{project.viEvidence}</span></dd>
                 </div>
               </dl>
-              <p class="vi-note" data-copy="vi">{project.vi}</p>
               <div class="stack-tags">
                 {project.stack.map((tag) => <span>{tag}</span>)}
               </div>
@@ -248,7 +302,7 @@ const description =
         {capabilityGroups.map((item, index) => (
           <article data-reveal>
             <span class="capability-index">0{index + 1}</span>
-            <h3>{item.title}</h3>
+            <h3><span data-copy="en">{item.title}</span><span data-copy="vi">{item.viTitle}</span></h3>
             <p><span data-copy="en">{item.text}</span><span data-copy="vi">{item.vi}</span></p>
           </article>
         ))}
@@ -267,27 +321,22 @@ const description =
         </h2>
       </div>
       <div class="proof-grid">
-        <article data-reveal>
-          <ShieldCheck size={22} aria-hidden="true" />
-          <h3>Focused positioning</h3>
-          <p>AI/ML and Computer Vision are the primary message across the site and GitHub profile.</p>
-        </article>
-        <article data-reveal>
-          <GitBranch size={22} aria-hidden="true" />
-          <h3>GitHub readiness</h3>
-          <p>Repo links, project summaries, and pinned repo guidance are prepared for quick review.</p>
-        </article>
-        <article data-reveal>
-          <FileDown size={22} aria-hidden="true" />
-          <h3>Recruiter package</h3>
-          <p>CV, LinkedIn, email, and selected repos are one click away. Phone number stays private.</p>
-        </article>
+        {proofCards.map((card) => {
+          const Icon = card.icon;
+          return (
+            <article data-reveal>
+              <Icon size={22} aria-hidden="true" />
+              <h3><span data-copy="en">{card.title}</span><span data-copy="vi">{card.viTitle}</span></h3>
+              <p><span data-copy="en">{card.text}</span><span data-copy="vi">{card.viText}</span></p>
+            </article>
+          );
+        })}
       </div>
     </section>
 
     <section class="section profile-section" id="profile">
       <div class="profile-summary" data-reveal>
-        <p class="eyebrow">Profile</p>
+        <p class="eyebrow"><span data-copy="en">Profile</span><span data-copy="vi">Hồ sơ</span></p>
         <h2>
           <span data-copy="en">ICT student preparing for AI/ML internship roles.</span>
           <span data-copy="vi">Sinh viên ICT hướng tới vai trò AI/ML Intern.</span>
@@ -308,8 +357,8 @@ const description =
           <article class="timeline-item" data-reveal>
             <time>{item.period}</time>
             <div>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
+              <h3><span data-copy="en">{item.title}</span><span data-copy="vi">{item.viTitle}</span></h3>
+              <p><span data-copy="en">{item.text}</span><span data-copy="vi">{item.viText}</span></p>
             </div>
           </article>
         ))}
@@ -318,7 +367,7 @@ const description =
 
     <section class="contact-band" id="contact" data-reveal>
       <div>
-        <p class="eyebrow">Contact</p>
+        <p class="eyebrow"><span data-copy="en">Contact</span><span data-copy="vi">Liên hệ</span></p>
         <h2>
           <span data-copy="en">Open to AI/ML internship roles.</span>
           <span data-copy="vi">Sẵn sàng cho cơ hội AI/ML internship.</span>
@@ -350,7 +399,9 @@ const description =
   </main>
 
   <footer class="site-footer">
-    <p>&copy; 2026 {profile.name}. All rights reserved.</p>
+    <p>
+      &copy; 2026 {profile.name}. <span data-copy="en">All rights reserved.</span><span data-copy="vi">Mọi quyền được bảo lưu.</span>
+    </p>
     <a href="#top"><span data-copy="en">Back to top</span><span data-copy="vi">Lên đầu trang</span></a>
   </footer>
 </BaseLayout>
