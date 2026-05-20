@@ -5,9 +5,9 @@ import HeroScene from "../components/HeroScene";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { capabilityGroups, profile, projects, proofSignals, timeline } from "../data/portfolio";
 
-const title = "Phạm Hoàng An | Global AI/ML Portfolio";
+const title = "Phạm Hoàng An | AI/ML Portfolio";
 const description =
-  "Award-style AI/ML portfolio for Phạm Hoàng An, focused on computer vision, YOLO pipelines, keyword spotting, and applied ML systems.";
+  "AI/ML portfolio for Phạm Hoàng An, focused on computer vision, YOLO pipelines, keyword spotting, and applied ML systems.";
 ---
 
 <BaseLayout title={title} description={description}>
@@ -56,32 +56,32 @@ const description =
       <div class="hero-grid">
         <div class="hero-copy">
           <p class="eyebrow" data-intro>
-            <span data-copy="en">AI/ML Intern - Computer Vision Systems</span>
-            <span data-copy="vi">AI/ML Intern - Hệ thống Computer Vision</span>
+            <span data-copy="en">AI/ML Intern · Computer Vision</span>
+            <span data-copy="vi">AI/ML Intern · Computer Vision</span>
           </p>
           <h1 data-intro>
             <span>{profile.name}</span>
             <strong>
-              <span data-copy="en">Building machine intelligence from model to demo.</span>
-              <span data-copy="vi">Xây dựng hệ thống ML từ model đến demo thật.</span>
+              <span data-copy="en">I build ML systems from model to working demo.</span>
+              <span data-copy="vi">Tôi xây dựng hệ thống ML từ model đến demo chạy được.</span>
             </strong>
           </h1>
           <p class="hero-text" data-intro>
             <span data-copy="en">
-              ICT student at USTH focused on applied computer vision, YOLO video intelligence,
-              real-time inference, and reproducible ML workflows that recruiters can verify.
+              ICT student at USTH focused on computer vision, real-time inference, and reproducible Python workflows.
+              My work connects training, evaluation, demos, and clear documentation.
             </span>
             <span data-copy="vi">
-              Sinh viên ICT tại USTH, tập trung computer vision ứng dụng, YOLO video intelligence,
-              real-time inference và workflow ML có thể kiểm chứng.
+              Sinh viên ICT tại USTH, tập trung computer vision, real-time inference và workflow Python có thể tái lập.
+              Tôi kết nối training, evaluation, demo và tài liệu rõ ràng.
             </span>
           </p>
 
           <div class="hero-actions" aria-label="Primary actions" data-intro>
             <a class="button button-primary" href="#work" data-magnetic>
               <Rocket size={16} aria-hidden="true" />
-              <span data-copy="en">Enter Portfolio</span>
-              <span data-copy="vi">Xem portfolio</span>
+              <span data-copy="en">View Work</span>
+              <span data-copy="vi">Xem dự án</span>
             </a>
             <a class="button button-secondary" href={profile.cv} target="_blank" rel="noreferrer" data-magnetic>
               <FileDown size={16} aria-hidden="true" />
@@ -95,10 +95,10 @@ const description =
           </div>
 
           <div class="hero-chips" aria-hidden="true" data-intro>
-            <span>YOLO pipeline</span>
-            <span>OpenCV geometry</span>
+            <span>YOLO</span>
+            <span>OpenCV</span>
             <span>Real-time inference</span>
-            <span>GitHub evidence</span>
+            <span>Reproducible runs</span>
           </div>
         </div>
 
@@ -118,8 +118,8 @@ const description =
           </div>
           <div class="avatar-meta">
             <p class="panel-kicker">
-              <span data-copy="en">Recruiter snapshot</span>
-              <span data-copy="vi">Tóm tắt nhanh</span>
+              <span data-copy="en">Snapshot</span>
+              <span data-copy="vi">Tóm tắt</span>
             </p>
             <h2>{profile.name}</h2>
             <p>{profile.role} - {profile.location}</p>
@@ -138,10 +138,10 @@ const description =
 
     <section class="signal-band" aria-label="Verification signals" data-reveal>
       {[
-        ["Python-first ML", "TensorFlow, PyTorch, scikit-learn, TFLite"],
-        ["Computer Vision", "YOLO, OpenCV, keypoints, tracking, homography"],
-        ["Deployable workflow", "Colab, Linux CLI, Azure VM, Google Cloud, Git"],
-        ["Evidence mindset", "Repos, runbooks, metrics, demos"],
+        ["ML workflows", "Training, evaluation, inference, documentation"],
+        ["Computer vision", "YOLO, OpenCV, keypoints, tracking, homography"],
+        ["Deployment path", "Colab, Linux CLI, Azure VM, Google Cloud, Git"],
+        ["Evidence", "Repos, runbooks, metrics, demos"],
       ].map(([heading, text]) => (
         <article>
           <strong>{heading}</strong>
@@ -157,8 +157,8 @@ const description =
           <span data-copy="vi">Dự án chọn lọc</span>
         </p>
         <h2>
-          <span data-copy="en">Project evidence presented like global case studies.</span>
-          <span data-copy="vi">Dự án được trình bày như case study chuẩn quốc tế.</span>
+          <span data-copy="en">Case studies with clear problem, approach, and evidence.</span>
+          <span data-copy="vi">Case study có vấn đề, cách làm và bằng chứng rõ ràng.</span>
         </h2>
       </div>
 
@@ -216,14 +216,14 @@ const description =
               <div class="story-actions">
                 <a class="story-link" href={project.repo} target="_blank" rel="me noreferrer">
                   <ExternalLink size={15} aria-hidden="true" />
-                  <span data-copy="en">View repository</span>
-                  <span data-copy="vi">Xem repository</span>
+                  <span data-copy="en">Repository</span>
+                  <span data-copy="vi">Repository</span>
                 </a>
                 {project.demo ? (
                   <a class="story-link" href={project.demo} target="_blank" rel="noreferrer">
                     <Play size={15} aria-hidden="true" />
-                    <span data-copy="en">Watch demo</span>
-                    <span data-copy="vi">Xem demo</span>
+                    <span data-copy="en">Demo</span>
+                    <span data-copy="vi">Demo</span>
                   </a>
                 ) : null}
               </div>
@@ -236,12 +236,12 @@ const description =
     <section class="section stack-section" id="stack">
       <div class="section-header" data-reveal>
         <p class="eyebrow">
-          <span data-copy="en">Technical operating system</span>
-          <span data-copy="vi">Hệ kỹ năng kỹ thuật</span>
+          <span data-copy="en">Technical stack</span>
+          <span data-copy="vi">Kỹ năng kỹ thuật</span>
         </p>
         <h2>
-          <span data-copy="en">A compact ML engineering stack for internships with real output.</span>
-          <span data-copy="vi">Stack ML engineering gọn, thực tế và có output kiểm chứng.</span>
+          <span data-copy="en">Focused tools for applied ML and computer vision.</span>
+          <span data-copy="vi">Bộ công cụ gọn cho applied ML và computer vision.</span>
         </h2>
       </div>
       <div class="capability-grid">
@@ -258,29 +258,29 @@ const description =
     <section class="section proof-section" id="proof">
       <div class="section-header" data-reveal>
         <p class="eyebrow">
-          <span data-copy="en">Global proof layer</span>
-          <span data-copy="vi">Lớp bằng chứng toàn cầu</span>
+          <span data-copy="en">Recruiter proof</span>
+          <span data-copy="vi">Bằng chứng cho recruiter</span>
         </p>
         <h2>
-          <span data-copy="en">Everything points recruiters toward verifiable technical evidence.</span>
-          <span data-copy="vi">Mọi phần đều dẫn recruiter tới bằng chứng kỹ thuật có thể kiểm tra.</span>
+          <span data-copy="en">A short path from profile to technical evidence.</span>
+          <span data-copy="vi">Đường dẫn ngắn từ hồ sơ đến bằng chứng kỹ thuật.</span>
         </h2>
       </div>
       <div class="proof-grid">
         <article data-reveal>
           <ShieldCheck size={22} aria-hidden="true" />
           <h3>Focused positioning</h3>
-          <p>AI/ML + Computer Vision is the primary message across the portfolio and GitHub deliverables.</p>
+          <p>AI/ML and Computer Vision are the primary message across the site and GitHub profile.</p>
         </article>
         <article data-reveal>
           <GitBranch size={22} aria-hidden="true" />
           <h3>GitHub readiness</h3>
-          <p>Prepared local profile README, repo descriptions, and pinned repo strategy for quick recruiter review.</p>
+          <p>Repo links, project summaries, and pinned repo guidance are prepared for quick review.</p>
         </article>
         <article data-reveal>
           <FileDown size={22} aria-hidden="true" />
           <h3>Recruiter package</h3>
-          <p>CV, selected repos, LinkedIn, email, and project evidence are reachable without exposing a phone number.</p>
+          <p>CV, LinkedIn, email, and selected repos are one click away. Phone number stays private.</p>
         </article>
       </div>
     </section>
@@ -289,17 +289,17 @@ const description =
       <div class="profile-summary" data-reveal>
         <p class="eyebrow">Profile</p>
         <h2>
-          <span data-copy="en">ICT student building toward AI/ML internship roles.</span>
-          <span data-copy="vi">Sinh viên ICT hướng tới vai trò AI/ML intern.</span>
+          <span data-copy="en">ICT student preparing for AI/ML internship roles.</span>
+          <span data-copy="vi">Sinh viên ICT hướng tới vai trò AI/ML Intern.</span>
         </h2>
         <p>
           <span data-copy="en">
-            I work best where the goal is concrete: train a model, measure it, build a runnable demo,
-            document the workflow, and keep the code understandable for the next person.
+            I prefer practical ML work: define a target, train and evaluate the model, ship a runnable demo,
+            then document the workflow so others can reproduce it.
           </span>
           <span data-copy="vi">
-            Tôi phù hợp với bài toán cụ thể: train model, đo lường, làm demo chạy được,
-            ghi lại workflow và giữ code dễ hiểu cho người tiếp theo.
+            Tôi phù hợp với công việc ML thực tế: xác định mục tiêu, train và đánh giá model,
+            làm demo chạy được, rồi viết tài liệu để người khác có thể tái lập.
           </span>
         </p>
       </div>
@@ -320,12 +320,12 @@ const description =
       <div>
         <p class="eyebrow">Contact</p>
         <h2>
-          <span data-copy="en">Open to AI/ML internship opportunities.</span>
+          <span data-copy="en">Open to AI/ML internship roles.</span>
           <span data-copy="vi">Sẵn sàng cho cơ hội AI/ML internship.</span>
         </h2>
         <p>
-          <span data-copy="en">Reach out for internship roles, applied ML projects, or computer vision collaboration.</span>
-          <span data-copy="vi">Liên hệ cho vị trí internship, project applied ML hoặc hợp tác computer vision.</span>
+          <span data-copy="en">For internships, applied ML projects, or computer vision collaboration, contact me by email or LinkedIn.</span>
+          <span data-copy="vi">Liên hệ qua email hoặc LinkedIn cho internship, project applied ML hoặc hợp tác computer vision.</span>
         </p>
       </div>
       <div class="contact-actions">

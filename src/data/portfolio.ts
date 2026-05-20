@@ -18,7 +18,7 @@ export const profile = {
 };
 
 export const proofSignals = [
-  { value: "22", label: "public repos", vi: "repo public" },
+  { value: "22", label: "public repos", vi: "repo công khai" },
   { value: "3", label: "AI/CV case studies", vi: "case study AI/CV" },
   { value: "2025", label: "ML specialization", vi: "chứng chỉ ML" },
   { value: "USTH", label: "ICT student", vi: "sinh viên ICT" },
@@ -32,13 +32,13 @@ export const projects = [
     repo: "https://github.com/AnHgPham/computer-vision-pickleball-detection-court",
     demo: "https://drive.google.com/file/d/1-T7m2KjSCVFxOKF3X5jqs_or0lnsc-L7/view?usp=sharing",
     problem:
-      "Recruiters need to see whether I can connect model training, video inference, geometry, and useful outputs in one working system.",
+      "Turn match footage into measurable signals: court geometry, ball/player tracking, and reviewable outputs.",
     approach:
-      "Built a pipeline for court keypoints, ball/player detection, temporal smoothing, homography projection, minimaps, and shot heatmaps.",
+      "Built a Python pipeline for court keypoints, YOLO detections, temporal smoothing, homography, minimap, and heatmap export.",
     evidence:
-      "12 court keypoints, 4-stage ball tracking cascade, 2D court projection, exportable annotated outputs.",
+      "12 court keypoints, 4-stage ball tracking cascade, 2D court projection, annotated video output.",
     vi:
-      "Pipeline phân tích video pickleball: court keypoints, tracking bóng/người chơi, Kalman smoothing, homography, minimap và heatmap.",
+      "Pipeline phân tích video pickleball: nhận diện sân, theo dõi bóng/người chơi, làm mượt chuyển động, homography, minimap và heatmap.",
     stack: ["YOLOv8-Pose", "OpenCV", "Kalman Filter", "Homography", "Python"],
   },
   {
@@ -48,13 +48,13 @@ export const projects = [
     repo: "https://github.com/AnHgPham/DoAnTotNghiep",
     demo: "",
     problem:
-      "Voice interfaces need to learn new keywords from very few samples while rejecting unknown audio in real streams.",
+      "Detect custom keywords from a few examples while rejecting unknown audio in streaming use cases.",
     approach:
-      "Designed few-shot enrollment with prototype embeddings, thresholding, streaming segmentation, voting, and cooldown logic.",
+      "Implemented enrollment with prototype embeddings, thresholding, stream segmentation, voting, and cooldown control.",
     evidence:
-      "3-5 sample enrollment, microphone streaming path, open-set rejection workflow, reproducible Colab/local runbooks.",
+      "3-5 sample enrollment, microphone streaming flow, open-set rejection, Colab/local runbooks.",
     vi:
-      "Đồ án keyword spotting few-shot: đăng ký 3-5 mẫu, prototype embeddings, streaming microphone và từ chối âm thanh ngoài tập.",
+      "Keyword spotting few-shot: đăng ký 3-5 mẫu, prototype embeddings, microphone streaming và từ chối âm thanh ngoài tập.",
     stack: ["Python", "Audio ML", "Embeddings", "Open-set", "Streaming"],
   },
   {
@@ -64,13 +64,13 @@ export const projects = [
     repo: "https://github.com/AnHgPham/waste_classifier",
     demo: "",
     problem:
-      "Applied CV systems need a clear path from training and evaluation to real-time inference that non-ML users can understand.",
+      "Make waste recognition usable beyond training notebooks: image input, webcam inference, and evaluation.",
     approach:
-      "Combined MobileNetV2 classification and YOLOv8 detection for image, webcam, and evaluation workflows.",
+      "Combined MobileNetV2 classification and YOLOv8 detection for training, evaluation, and real-time demos.",
     evidence:
-      "10-class waste recognition, transfer learning, webcam labels, confusion/evaluation artifacts, TFLite path.",
+      "10-class recognition, transfer learning, webcam labels, evaluation artifacts, TFLite path.",
     vi:
-      "Hệ thống phân loại rác real-time dùng MobileNetV2 và YOLOv8, có workflow train/eval/inference webcam.",
+      "Hệ thống phân loại rác real-time dùng MobileNetV2 và YOLOv8, có train, evaluation, webcam inference và hướng TFLite.",
     stack: ["TensorFlow", "MobileNetV2", "YOLOv8", "TFLite", "OpenCV"],
   },
 ];
@@ -78,7 +78,7 @@ export const projects = [
 export const capabilityGroups = [
   {
     title: "Modeling",
-    text: "TensorFlow/Keras, PyTorch, scikit-learn, transfer learning, model evaluation.",
+    text: "TensorFlow/Keras, PyTorch, scikit-learn, transfer learning, evaluation.",
     vi: "TensorFlow/Keras, PyTorch, scikit-learn, transfer learning, đánh giá model.",
   },
   {
@@ -88,13 +88,13 @@ export const capabilityGroups = [
   },
   {
     title: "ML Engineering",
-    text: "Python-first workflows, notebooks to scripts, CLI demos, reproducible runs.",
-    vi: "Workflow Python, chuyển notebook thành script, CLI demo, run có thể tái lập.",
+    text: "Python workflows, notebooks to scripts, CLI demos, reproducible runs.",
+    vi: "Workflow Python, chuyển notebook thành script, CLI demo, chạy tái lập.",
   },
   {
     title: "Cloud Workflow",
-    text: "Google Colab, Azure VM, Google Cloud, Git/GitHub, Linux CLI.",
-    vi: "Google Colab, Azure VM, Google Cloud, Git/GitHub, Linux CLI.",
+    text: "Colab, Azure VM, Google Cloud, Git/GitHub, Linux CLI.",
+    vi: "Colab, Azure VM, Google Cloud, Git/GitHub, Linux CLI.",
   },
 ];
 
@@ -107,11 +107,11 @@ export const timeline = [
   {
     period: "2025",
     title: "Machine Learning Specialization - Stanford / DeepLearning.AI",
-    text: "Coursera specialization covering supervised learning, advanced learning algorithms, and practical ML foundations.",
+    text: "Coursera specialization in supervised learning, advanced learning algorithms, and practical ML foundations.",
   },
   {
     period: "2020 - 2023",
     title: "Chu Van An High School - Informatics Class",
-    text: "Informatics-focused high school track with early foundations in programming and computational thinking.",
+    text: "Informatics track with early foundations in programming and computational thinking.",
   },
 ];

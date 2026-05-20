@@ -1,6 +1,6 @@
-# Pham Hoang An - Global AI/ML Portfolio
+# Pham Hoang An - AI/ML Portfolio
 
-Premium Astro + React portfolio for AI/ML internship recruiting. The site builds to static files, so it can deploy cleanly on Cloudflare Pages.
+Astro + React portfolio for AI/ML internship recruiting. The site builds to static files and deploys cleanly on Cloudflare Pages.
 
 ## Stack
 
