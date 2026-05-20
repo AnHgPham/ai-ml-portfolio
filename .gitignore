@@ -1,0 +1,27 @@
+# Dependencies and local caches
+node_modules/
+.astro/
+
+# Build and deploy artifacts
+dist/
+portfolio-cloudflare.zip
+
+# Local QA output
+qa-screenshots/
+
+# Local legacy static draft kept outside the Astro source repo
+/index.html
+/script.js
+/styles.css
+/_headers
+/assets/
+/github-upgrade/
+
+# Environment and OS/editor files
+.env
+.env.*
+!.env.example
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,87 @@
+---
+import "../styles/global.css";
+import { profile, projects } from "../data/portfolio";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  name: title,
+  description,
+  mainEntity: {
+    "@type": "Person",
+    name: profile.name,
+    email: `mailto:${profile.email}`,
+    jobTitle: profile.role,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Hanoi",
+      addressCountry: "VN",
+    },
+    sameAs: [profile.github, profile.linkedin],
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "University of Science and Technology of Hanoi",
+    },
+    knowsAbout: [
+      "Machine Learning",
+      "Computer Vision",
+      "YOLO",
+      "OpenCV",
+      "TensorFlow",
+      "PyTorch",
+      "Keyword Spotting",
+    ],
+    subjectOf: projects.map((project) => ({
+      "@type": "SoftwareSourceCode",
+      name: project.title,
+      codeRepository: project.repo,
+      programmingLanguage: "Python",
+    })),
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#07130f" />
+    <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/og-cover.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="/assets/og-cover.jpg" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/pham-hoang-an-720.webp"
+      imagesrcset="/assets/pham-hoang-an-480.webp 480w, /assets/pham-hoang-an-720.webp 720w, /assets/pham-hoang-an-960.webp 960w, /assets/pham-hoang-an-1200.webp 1200w"
+      imagesizes="(max-width: 720px) 220px, (max-width: 1080px) 300px, 360px"
+      type="image/webp"
+    />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body data-lang="en">
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+    <a class="skip-link" href="#main">
+      <span data-copy="en">Skip to content</span>
+      <span data-copy="vi">Bỏ qua điều hướng</span>
+    </a>
+    <slot />
+  </body>
+</html>

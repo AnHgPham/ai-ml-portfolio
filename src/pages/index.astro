@@ -1,0 +1,356 @@
+---
+import { ExternalLink, FileDown, GitBranch, Mail, Play, Rocket, ShieldCheck } from "lucide-react";
+import GlobalInteractions from "../components/GlobalInteractions";
+import HeroScene from "../components/HeroScene";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { capabilityGroups, profile, projects, proofSignals, timeline } from "../data/portfolio";
+
+const title = "Phạm Hoàng An | Global AI/ML Portfolio";
+const description =
+  "Award-style AI/ML portfolio for Phạm Hoàng An, focused on computer vision, YOLO pipelines, keyword spotting, and applied ML systems.";
+---
+
+<BaseLayout title={title} description={description}>
+  <GlobalInteractions client:load />
+
+  <header class="site-header" data-site-header>
+    <a class="brand" href="#top" aria-label="Go to top">
+      <span class="brand-mark">PA</span>
+      <span>{profile.name}</span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <ul class="nav-list" id="site-menu" data-nav-list>
+        <li><a href="#work"><span data-copy="en">Work</span><span data-copy="vi">Dự án</span></a></li>
+        <li><a href="#stack"><span data-copy="en">Stack</span><span data-copy="vi">Kỹ năng</span></a></li>
+        <li><a href="#proof"><span data-copy="en">Proof</span><span data-copy="vi">Bằng chứng</span></a></li>
+        <li><a href="#profile"><span data-copy="en">Profile</span><span data-copy="vi">Hồ sơ</span></a></li>
+        <li><a href="#contact"><span data-copy="en">Contact</span><span data-copy="vi">Liên hệ</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <button class="language-toggle" type="button" aria-pressed="false" aria-label="Switch to Vietnamese" data-language-toggle>
+        <span data-copy="en">VI</span>
+        <span data-copy="vi">EN</span>
+      </button>
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-label="Open menu"
+        aria-controls="site-menu"
+        data-menu-button
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span class="sr-only">Open menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero-shell" id="top">
+      <HeroScene client:idle />
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-intro>
+            <span data-copy="en">AI/ML Intern - Computer Vision Systems</span>
+            <span data-copy="vi">AI/ML Intern - Hệ thống Computer Vision</span>
+          </p>
+          <h1 data-intro>
+            <span>{profile.name}</span>
+            <strong>
+              <span data-copy="en">Building machine intelligence from model to demo.</span>
+              <span data-copy="vi">Xây dựng hệ thống ML từ model đến demo thật.</span>
+            </strong>
+          </h1>
+          <p class="hero-text" data-intro>
+            <span data-copy="en">
+              ICT student at USTH focused on applied computer vision, YOLO video intelligence,
+              real-time inference, and reproducible ML workflows that recruiters can verify.
+            </span>
+            <span data-copy="vi">
+              Sinh viên ICT tại USTH, tập trung computer vision ứng dụng, YOLO video intelligence,
+              real-time inference và workflow ML có thể kiểm chứng.
+            </span>
+          </p>
+
+          <div class="hero-actions" aria-label="Primary actions" data-intro>
+            <a class="button button-primary" href="#work" data-magnetic>
+              <Rocket size={16} aria-hidden="true" />
+              <span data-copy="en">Enter Portfolio</span>
+              <span data-copy="vi">Xem portfolio</span>
+            </a>
+            <a class="button button-secondary" href={profile.cv} target="_blank" rel="noreferrer" data-magnetic>
+              <FileDown size={16} aria-hidden="true" />
+              <span data-copy="en">Download CV</span>
+              <span data-copy="vi">Tải CV</span>
+            </a>
+            <a class="button button-ghost" href={profile.github} target="_blank" rel="me noreferrer" data-magnetic>
+              <ExternalLink size={16} aria-hidden="true" />
+              GitHub
+            </a>
+          </div>
+
+          <div class="hero-chips" aria-hidden="true" data-intro>
+            <span>YOLO pipeline</span>
+            <span>OpenCV geometry</span>
+            <span>Real-time inference</span>
+            <span>GitHub evidence</span>
+          </div>
+        </div>
+
+        <aside class="avatar-command" aria-label="Recruiter snapshot" data-intro>
+          <div class="avatar-frame">
+            <picture>
+              <source type="image/webp" srcset={profile.portrait.webp} sizes="(max-width: 720px) 220px, (max-width: 1080px) 300px, 360px" />
+              <img
+                src={profile.portrait.fallback}
+                width="720"
+                height="1111"
+                alt={`Portrait of ${profile.name}`}
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
+          </div>
+          <div class="avatar-meta">
+            <p class="panel-kicker">
+              <span data-copy="en">Recruiter snapshot</span>
+              <span data-copy="vi">Tóm tắt nhanh</span>
+            </p>
+            <h2>{profile.name}</h2>
+            <p>{profile.role} - {profile.location}</p>
+          </div>
+          <dl class="signal-grid">
+            {proofSignals.slice(0, 3).map((signal) => (
+              <div class="signal-tile">
+                <dt data-count={Number.isNaN(Number.parseInt(signal.value, 10)) ? undefined : signal.value}>{signal.value}</dt>
+                <dd><span data-copy="en">{signal.label}</span><span data-copy="vi">{signal.vi}</span></dd>
+              </div>
+            ))}
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section class="signal-band" aria-label="Verification signals" data-reveal>
+      {[
+        ["Python-first ML", "TensorFlow, PyTorch, scikit-learn, TFLite"],
+        ["Computer Vision", "YOLO, OpenCV, keypoints, tracking, homography"],
+        ["Deployable workflow", "Colab, Linux CLI, Azure VM, Google Cloud, Git"],
+        ["Evidence mindset", "Repos, runbooks, metrics, demos"],
+      ].map(([heading, text]) => (
+        <article>
+          <strong>{heading}</strong>
+          <span>{text}</span>
+        </article>
+      ))}
+    </section>
+
+    <section class="section work-section" id="work">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">
+          <span data-copy="en">Selected work</span>
+          <span data-copy="vi">Dự án chọn lọc</span>
+        </p>
+        <h2>
+          <span data-copy="en">Project evidence presented like global case studies.</span>
+          <span data-copy="vi">Dự án được trình bày như case study chuẩn quốc tế.</span>
+        </h2>
+      </div>
+
+      <div class="project-stack">
+        {projects.map((project, index) => (
+          <article class={`project-story project-${project.id}`} data-project-id={project.id}>
+            <div class="story-index" aria-hidden="true">0{index + 1}</div>
+            <div class="story-visual" aria-hidden="true">
+              {project.id === "pickleball" && (
+                <div class="visual-pickle">
+                  <span class="court-line line-a"></span>
+                  <span class="court-line line-b"></span>
+                  <span class="player-dot dot-a"></span>
+                  <span class="player-dot dot-b"></span>
+                  <span class="ball-path"></span>
+                  <span class="heat-zone"></span>
+                </div>
+              )}
+              {project.id === "kws" && (
+                <div class="visual-audio">
+                  <span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+              )}
+              {project.id === "waste" && (
+                <div class="visual-waste">
+                  <span class="bin"></span>
+                  <span class="sort-line"></span>
+                  <span class="label label-a">paper</span>
+                  <span class="label label-b">metal</span>
+                  <span class="label label-c">plastic</span>
+                </div>
+              )}
+            </div>
+            <div class="story-content">
+              <p class="project-type">{project.type}</p>
+              <h3>{project.title}</h3>
+              <dl class="story-grid">
+                <div>
+                  <dt>Problem</dt>
+                  <dd>{project.problem}</dd>
+                </div>
+                <div>
+                  <dt>Approach</dt>
+                  <dd>{project.approach}</dd>
+                </div>
+                <div>
+                  <dt>Evidence</dt>
+                  <dd>{project.evidence}</dd>
+                </div>
+              </dl>
+              <p class="vi-note" data-copy="vi">{project.vi}</p>
+              <div class="stack-tags">
+                {project.stack.map((tag) => <span>{tag}</span>)}
+              </div>
+              <div class="story-actions">
+                <a class="story-link" href={project.repo} target="_blank" rel="me noreferrer">
+                  <ExternalLink size={15} aria-hidden="true" />
+                  <span data-copy="en">View repository</span>
+                  <span data-copy="vi">Xem repository</span>
+                </a>
+                {project.demo ? (
+                  <a class="story-link" href={project.demo} target="_blank" rel="noreferrer">
+                    <Play size={15} aria-hidden="true" />
+                    <span data-copy="en">Watch demo</span>
+                    <span data-copy="vi">Xem demo</span>
+                  </a>
+                ) : null}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section stack-section" id="stack">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">
+          <span data-copy="en">Technical operating system</span>
+          <span data-copy="vi">Hệ kỹ năng kỹ thuật</span>
+        </p>
+        <h2>
+          <span data-copy="en">A compact ML engineering stack for internships with real output.</span>
+          <span data-copy="vi">Stack ML engineering gọn, thực tế và có output kiểm chứng.</span>
+        </h2>
+      </div>
+      <div class="capability-grid">
+        {capabilityGroups.map((item, index) => (
+          <article data-reveal>
+            <span class="capability-index">0{index + 1}</span>
+            <h3>{item.title}</h3>
+            <p><span data-copy="en">{item.text}</span><span data-copy="vi">{item.vi}</span></p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section proof-section" id="proof">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">
+          <span data-copy="en">Global proof layer</span>
+          <span data-copy="vi">Lớp bằng chứng toàn cầu</span>
+        </p>
+        <h2>
+          <span data-copy="en">Everything points recruiters toward verifiable technical evidence.</span>
+          <span data-copy="vi">Mọi phần đều dẫn recruiter tới bằng chứng kỹ thuật có thể kiểm tra.</span>
+        </h2>
+      </div>
+      <div class="proof-grid">
+        <article data-reveal>
+          <ShieldCheck size={22} aria-hidden="true" />
+          <h3>Focused positioning</h3>
+          <p>AI/ML + Computer Vision is the primary message across the portfolio and GitHub deliverables.</p>
+        </article>
+        <article data-reveal>
+          <GitBranch size={22} aria-hidden="true" />
+          <h3>GitHub readiness</h3>
+          <p>Prepared local profile README, repo descriptions, and pinned repo strategy for quick recruiter review.</p>
+        </article>
+        <article data-reveal>
+          <FileDown size={22} aria-hidden="true" />
+          <h3>Recruiter package</h3>
+          <p>CV, selected repos, LinkedIn, email, and project evidence are reachable without exposing a phone number.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section profile-section" id="profile">
+      <div class="profile-summary" data-reveal>
+        <p class="eyebrow">Profile</p>
+        <h2>
+          <span data-copy="en">ICT student building toward AI/ML internship roles.</span>
+          <span data-copy="vi">Sinh viên ICT hướng tới vai trò AI/ML intern.</span>
+        </h2>
+        <p>
+          <span data-copy="en">
+            I work best where the goal is concrete: train a model, measure it, build a runnable demo,
+            document the workflow, and keep the code understandable for the next person.
+          </span>
+          <span data-copy="vi">
+            Tôi phù hợp với bài toán cụ thể: train model, đo lường, làm demo chạy được,
+            ghi lại workflow và giữ code dễ hiểu cho người tiếp theo.
+          </span>
+        </p>
+      </div>
+      <div class="timeline">
+        {timeline.map((item) => (
+          <article class="timeline-item" data-reveal>
+            <time>{item.period}</time>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="contact-band" id="contact" data-reveal>
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>
+          <span data-copy="en">Open to AI/ML internship opportunities.</span>
+          <span data-copy="vi">Sẵn sàng cho cơ hội AI/ML internship.</span>
+        </h2>
+        <p>
+          <span data-copy="en">Reach out for internship roles, applied ML projects, or computer vision collaboration.</span>
+          <span data-copy="vi">Liên hệ cho vị trí internship, project applied ML hoặc hợp tác computer vision.</span>
+        </p>
+      </div>
+      <div class="contact-actions">
+        <a class="button button-primary" href={`mailto:${profile.email}`} data-magnetic>
+          <Mail size={16} aria-hidden="true" />
+          Email
+        </a>
+        <a class="button button-secondary" href={profile.cv} target="_blank" rel="noreferrer" data-magnetic>
+          <FileDown size={16} aria-hidden="true" />
+          CV
+        </a>
+        <a class="button button-secondary" href={profile.github} target="_blank" rel="me noreferrer" data-magnetic>
+          <ExternalLink size={16} aria-hidden="true" />
+          GitHub
+        </a>
+        <a class="button button-secondary" href={profile.linkedin} target="_blank" rel="me noreferrer" data-magnetic>
+          <ExternalLink size={16} aria-hidden="true" />
+          LinkedIn
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 {profile.name}. All rights reserved.</p>
+    <a href="#top"><span data-copy="en">Back to top</span><span data-copy="vi">Lên đầu trang</span></a>
+  </footer>
+</BaseLayout>
