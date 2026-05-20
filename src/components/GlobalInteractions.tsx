@@ -44,6 +44,7 @@ export default function GlobalInteractions() {
     const languageToggle = document.querySelector<HTMLButtonElement>("[data-language-toggle]");
     const progressBar = document.querySelector<HTMLElement>("[data-scroll-progress]");
     const demoButtons = document.querySelectorAll<HTMLButtonElement>("[data-demo-load]");
+    const dragRails = document.querySelectorAll<HTMLElement>("[data-drag-scroll]");
 
     try {
       const stored = localStorage.getItem("portfolio-language");
@@ -114,6 +115,81 @@ export default function GlobalInteractions() {
     };
 
     demoButtons.forEach((button) => button.addEventListener("click", onDemoLoad));
+
+    const dragRailCleanups = Array.from(dragRails, (rail) => {
+      let isDown = false;
+      let startX = 0;
+      let startScrollLeft = 0;
+      let moved = false;
+
+      const syncScrollableState = () => {
+        const isScrollable = rail.scrollWidth > rail.clientWidth + 2;
+        rail.dataset.scrollable = String(isScrollable);
+        rail.classList.toggle("is-draggable", isScrollable);
+      };
+
+      const onPointerDown = (event: PointerEvent) => {
+        if (event.pointerType === "touch" || rail.scrollWidth <= rail.clientWidth + 2) {
+          return;
+        }
+
+        isDown = true;
+        moved = false;
+        startX = event.clientX;
+        startScrollLeft = rail.scrollLeft;
+        rail.classList.add("is-dragging");
+        rail.setPointerCapture(event.pointerId);
+      };
+
+      const onPointerMove = (event: PointerEvent) => {
+        if (!isDown) {
+          return;
+        }
+
+        const delta = event.clientX - startX;
+        if (Math.abs(delta) > 3) {
+          moved = true;
+        }
+        rail.scrollLeft = startScrollLeft - delta;
+      };
+
+      const stopDragging = (event: PointerEvent) => {
+        if (!isDown) {
+          return;
+        }
+
+        isDown = false;
+        rail.classList.remove("is-dragging");
+        if (rail.hasPointerCapture(event.pointerId)) {
+          rail.releasePointerCapture(event.pointerId);
+        }
+      };
+
+      const onClick = (event: MouseEvent) => {
+        if (moved) {
+          event.preventDefault();
+          event.stopPropagation();
+          moved = false;
+        }
+      };
+
+      syncScrollableState();
+      window.addEventListener("resize", syncScrollableState);
+      rail.addEventListener("pointerdown", onPointerDown);
+      rail.addEventListener("pointermove", onPointerMove);
+      rail.addEventListener("pointerup", stopDragging);
+      rail.addEventListener("pointercancel", stopDragging);
+      rail.addEventListener("click", onClick, true);
+
+      return () => {
+        window.removeEventListener("resize", syncScrollableState);
+        rail.removeEventListener("pointerdown", onPointerDown);
+        rail.removeEventListener("pointermove", onPointerMove);
+        rail.removeEventListener("pointerup", stopDragging);
+        rail.removeEventListener("pointercancel", stopDragging);
+        rail.removeEventListener("click", onClick, true);
+      };
+    });
 
     let scrollCleanup = () => {};
     if (progressBar) {
@@ -552,6 +628,7 @@ export default function GlobalInteractions() {
       menu?.removeEventListener("click", onMenuClick);
       nav?.removeEventListener("click", onNavClick);
       demoButtons.forEach((button) => button.removeEventListener("click", onDemoLoad));
+      dragRailCleanups.forEach((cleanup) => cleanup());
       scrollCleanup();
       gsapCleanup();
     };

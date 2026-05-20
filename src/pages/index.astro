@@ -204,7 +204,7 @@ const proofCards = [
             </a>
           </div>
 
-          <div class="hero-signals" aria-label="Live ML signal strip" data-intro data-signal-strip>
+          <div class="hero-signals drag-rail" aria-label="Live ML signal strip" data-intro data-signal-strip data-drag-scroll>
             {heroSignals.map((signal, index) => (
               <article
                 class:list={["signal-module", signal.highlight && "signal-module-live"]}
@@ -278,7 +278,7 @@ const proofCards = [
       </div>
     </section>
 
-    <section class="signal-band" aria-label="Verification signals" data-reveal>
+    <section class="signal-band drag-rail" aria-label="Verification signals" data-reveal data-drag-scroll>
       {signalBand.map((item) => (
         <article>
           <strong><span data-copy="en">{item.heading}</span><span data-copy="vi">{item.viHeading}</span></strong>
@@ -477,7 +477,7 @@ const proofCards = [
                     </li>
                   ))}
                 </ol>
-                <div class="algorithm-ledger">
+                <div class="algorithm-ledger drag-rail" data-drag-scroll>
                   <span>
                     <span data-copy="en">{project.signals.complexity}</span>
                     <span data-copy="vi">{project.signals.viComplexity}</span>
@@ -490,7 +490,7 @@ const proofCards = [
                   ))}
                 </div>
               </section>
-              <div class="stack-tags">
+              <div class="stack-tags drag-rail" data-drag-scroll>
                 {project.stack.map((tag) => <span>{tag}</span>)}
               </div>
               <div class="story-actions">
@@ -573,7 +573,7 @@ const proofCards = [
           );
         })}
       </div>
-      <div class="proof-ledger" data-reveal>
+      <div class="proof-ledger drag-rail" data-reveal data-drag-scroll>
         <span><span data-copy="en">Source-first</span><span data-copy="vi">Ưu tiên nguồn gốc</span></span>
         <span><span data-copy="en">Repo-backed</span><span data-copy="vi">Có repo kiểm tra</span></span>
         <span><span data-copy="en">Demo-visible</span><span data-copy="vi">Có demo để xem</span></span>
