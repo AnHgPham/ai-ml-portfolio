@@ -11,6 +11,7 @@ function setLanguage(language: "en" | "vi") {
   const toggle = document.querySelector<HTMLButtonElement>("[data-language-toggle]");
   const menu = document.querySelector<HTMLButtonElement>("[data-menu-button]");
   const nav = document.querySelector<HTMLElement>("[data-nav-list]");
+  const demoFallbacks = document.querySelectorAll<HTMLElement>("[data-demo-fallback]");
 
   if (toggle) {
     toggle.setAttribute("aria-pressed", String(language === "vi"));
@@ -29,6 +30,10 @@ function setLanguage(language: "en" | "vi") {
     menu.setAttribute("aria-label", label);
     menu.querySelector(".sr-only")?.replaceChildren(label);
   }
+
+  demoFallbacks.forEach((fallback) => {
+    fallback.textContent = language === "vi" ? fallback.dataset.viLabel || "Mở Drive" : fallback.dataset.enLabel || "Open Drive";
+  });
 }
 
 export default function GlobalInteractions() {
@@ -38,6 +43,7 @@ export default function GlobalInteractions() {
     const menu = document.querySelector<HTMLButtonElement>("[data-menu-button]");
     const languageToggle = document.querySelector<HTMLButtonElement>("[data-language-toggle]");
     const progressBar = document.querySelector<HTMLElement>("[data-scroll-progress]");
+    const demoButtons = document.querySelectorAll<HTMLButtonElement>("[data-demo-load]");
 
     try {
       const stored = localStorage.getItem("portfolio-language");
@@ -76,6 +82,38 @@ export default function GlobalInteractions() {
     languageToggle?.addEventListener("click", onLanguageClick);
     menu?.addEventListener("click", onMenuClick);
     nav?.addEventListener("click", onNavClick);
+
+    const onDemoLoad = (event: Event) => {
+      const button = event.currentTarget as HTMLButtonElement;
+      const frame = button.closest<HTMLElement>("[data-demo-frame]");
+      const src = frame?.dataset.demoSrc;
+      if (!frame || !src || frame.classList.contains("is-loaded")) {
+        return;
+      }
+
+      const iframe = document.createElement("iframe");
+      iframe.src = src;
+      iframe.title = frame.dataset.demoTitle || "Project demo";
+      iframe.loading = "lazy";
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
+
+      const fallback = document.createElement("a");
+      fallback.className = "demo-external-fallback";
+      fallback.dataset.demoFallback = "true";
+      fallback.dataset.enLabel = "Open Drive";
+      fallback.dataset.viLabel = "Mở Drive";
+      fallback.href = frame.dataset.demoOpen || src.replace("/preview", "/view?usp=sharing");
+      fallback.target = "_blank";
+      fallback.rel = "noreferrer";
+      fallback.textContent = document.body.dataset.lang === "vi" ? fallback.dataset.viLabel : fallback.dataset.enLabel;
+
+      frame.classList.add("is-loaded");
+      frame.replaceChildren(iframe, fallback);
+    };
+
+    demoButtons.forEach((button) => button.addEventListener("click", onDemoLoad));
 
     let scrollCleanup = () => {};
     if (progressBar) {
@@ -513,6 +551,7 @@ export default function GlobalInteractions() {
       languageToggle?.removeEventListener("click", onLanguageClick);
       menu?.removeEventListener("click", onMenuClick);
       nav?.removeEventListener("click", onNavClick);
+      demoButtons.forEach((button) => button.removeEventListener("click", onDemoLoad));
       scrollCleanup();
       gsapCleanup();
     };

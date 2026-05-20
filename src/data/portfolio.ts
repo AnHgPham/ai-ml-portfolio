@@ -35,6 +35,12 @@ export const projects = [
     viType: "Computer Vision / Phân tích video",
     repo: "https://github.com/AnHgPham/computer-vision-pickleball-detection-court",
     demo: "https://drive.google.com/file/d/1-T7m2KjSCVFxOKF3X5jqs_or0lnsc-L7/view?usp=sharing",
+    demoEmbed: "https://drive.google.com/file/d/1-T7m2KjSCVFxOKF3X5jqs_or0lnsc-L7/preview",
+    demoLabel: "Watch Pickleball Demo",
+    viDemoLabel: "Xem demo Pickleball",
+    visualMode: "demo-theater",
+    mediaStatus: "Drive preview",
+    viMediaStatus: "Preview từ Drive",
     problem:
       "Turn match footage into measurable signals: court geometry, ball/player tracking, and reviewable outputs.",
     viProblem:
@@ -104,6 +110,12 @@ export const projects = [
     viType: "Audio ML few-shot",
     repo: "https://github.com/AnHgPham/DoAnTotNghiep",
     demo: "",
+    demoEmbed: "",
+    demoLabel: "",
+    viDemoLabel: "",
+    visualMode: "signal-lab",
+    mediaStatus: "Streaming model",
+    viMediaStatus: "Mô hình streaming",
     problem:
       "Detect custom keywords from a few examples while rejecting unknown audio in streaming use cases.",
     viProblem:
@@ -173,6 +185,12 @@ export const projects = [
     viType: "Deep Learning / Computer Vision thời gian thực",
     repo: "https://github.com/AnHgPham/waste_classifier",
     demo: "",
+    demoEmbed: "",
+    demoLabel: "",
+    viDemoLabel: "",
+    visualMode: "classifier-lab",
+    mediaStatus: "Webcam inference",
+    viMediaStatus: "Inference webcam",
     problem:
       "Make waste recognition usable beyond training notebooks: image input, webcam inference, and evaluation.",
     viProblem:

@@ -303,54 +303,124 @@ const proofCards = [
         {projects.map((project, index) => (
           <article class={`project-story project-${project.id}`} data-project-id={project.id}>
             <div class="story-index" aria-hidden="true">0{index + 1}</div>
-            <div class="story-visual" aria-hidden="true">
-              {project.id === "pickleball" && (
-                <div class="visual-pickle">
-                  <span class="algorithm-kicker">detect.track.project</span>
-                  <span class="court-line line-a"></span>
-                  <span class="court-line line-b"></span>
-                  <span class="player-dot dot-a"></span>
-                  <span class="player-dot dot-b"></span>
-                  <span class="ball-path"></span>
-                  <span class="heat-zone"></span>
-                  <span class="track-vector vector-a"></span>
-                  <span class="track-vector vector-b"></span>
-                  {Array.from({ length: 12 }, (_, pointIndex) => (
-                    <span class={`court-point point-${pointIndex + 1}`}></span>
-                  ))}
-                  <span class="algorithm-readout readout-a">homography</span>
-                  <span class="algorithm-readout readout-b">kalman</span>
+            <div class="story-visual" data-visual-mode={project.visualMode}>
+              <div class="visual-dashboard">
+                <div class="visual-topbar">
+                  <span class="window-controls" aria-hidden="true"><i></i><i></i><i></i></span>
+                  <strong><span data-copy="en">{project.mediaStatus}</span><span data-copy="vi">{project.viMediaStatus}</span></strong>
+                  <span class="visual-mode">{project.visualMode}</span>
                 </div>
-              )}
-              {project.id === "kws" && (
-                <div class="visual-audio">
-                  <span class="algorithm-kicker">stream.segment.reject</span>
-                  <span class="audio-window window-a"></span>
-                  <span class="audio-window window-b"></span>
-                  <span class="audio-window window-c"></span>
-                  <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
-                  <i class="threshold-line"></i>
-                  <span class="algorithm-readout readout-a">threshold</span>
-                  <span class="algorithm-readout readout-b">open-set</span>
-                </div>
-              )}
-              {project.id === "waste" && (
-                <div class="visual-waste">
-                  <span class="algorithm-kicker">classify.route.export</span>
-                  <span class="bin"></span>
-                  <span class="sort-line"></span>
-                  <span class="label label-a"><span data-copy="en">paper</span><span data-copy="vi">giấy</span></span>
-                  <span class="label label-b"><span data-copy="en">metal</span><span data-copy="vi">kim loại</span></span>
-                  <span class="label label-c"><span data-copy="en">plastic</span><span data-copy="vi">nhựa</span></span>
-                  <div class="confidence-stack">
-                    <span style="--confidence: 82%;">organic</span>
-                    <span style="--confidence: 58%;">plastic</span>
-                    <span style="--confidence: 34%;">paper</span>
-                  </div>
-                  <span class="algorithm-readout readout-a">MobileNetV2</span>
-                  <span class="algorithm-readout readout-b">TFLite</span>
-                </div>
-              )}
+
+                {project.id === "pickleball" && (
+                  <>
+                    <div class="demo-theater">
+                      <div
+                        class="demo-frame media-fallback"
+                        data-demo-frame
+                        data-demo-src={project.demoEmbed}
+                        data-demo-open={project.demo}
+                        data-demo-title={project.demoLabel}
+                      >
+                        <div class="demo-poster">
+                          <span class="poster-play" aria-hidden="true"><Play size={22} /></span>
+                          <strong><span data-copy="en">{project.demoLabel}</span><span data-copy="vi">{project.viDemoLabel}</span></strong>
+                          <p>
+                            <span data-copy="en">Load the Google Drive preview inside this portfolio.</span>
+                            <span data-copy="vi">Tải preview Google Drive trực tiếp trong portfolio.</span>
+                          </p>
+                          <button class="demo-load" type="button" data-demo-load>
+                            <Play size={15} aria-hidden="true" />
+                            <span data-copy="en">Watch Demo</span>
+                            <span data-copy="vi">Xem demo</span>
+                          </button>
+                          <a href={project.demo} target="_blank" rel="noreferrer">
+                            <ExternalLink size={14} aria-hidden="true" />
+                            <span data-copy="en">Open in Drive</span>
+                            <span data-copy="vi">Mở bằng Drive</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="visual-pickle visual-pickle-map" aria-hidden="true">
+                      <span class="algorithm-kicker">detect.track.project</span>
+                      <span class="court-line line-a"></span>
+                      <span class="court-line line-b"></span>
+                      <span class="court-line line-c"></span>
+                      <span class="court-line line-d"></span>
+                      <span class="player-dot dot-a"></span>
+                      <span class="player-dot dot-b"></span>
+                      <span class="ball-path"></span>
+                      <span class="heat-zone"></span>
+                      <span class="track-vector vector-a"></span>
+                      <span class="track-vector vector-b"></span>
+                      {Array.from({ length: 12 }, (_, pointIndex) => (
+                        <span class={`court-point point-${pointIndex + 1}`}></span>
+                      ))}
+                      <span class="algorithm-readout readout-a">homography</span>
+                      <span class="algorithm-readout readout-b">kalman</span>
+                    </div>
+                    <dl class="visual-metrics">
+                      <div><dt>12</dt><dd>court keypoints</dd></div>
+                      <div><dt>4x</dt><dd>tracking cascade</dd></div>
+                      <div><dt>2D</dt><dd>court projection</dd></div>
+                    </dl>
+                  </>
+                )}
+
+                {project.id === "kws" && (
+                  <>
+                    <div class="visual-audio visual-audio-lab" aria-hidden="true">
+                      <span class="algorithm-kicker">stream.segment.reject</span>
+                      <span class="audio-window window-a"></span>
+                      <span class="audio-window window-b"></span>
+                      <span class="audio-window window-c"></span>
+                      <span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span>
+                      <span class="spectrogram spectro-a"></span>
+                      <span class="spectrogram spectro-b"></span>
+                      <span class="spectrogram spectro-c"></span>
+                      <i class="threshold-line"></i>
+                      <span class="algorithm-readout readout-a">threshold</span>
+                      <span class="algorithm-readout readout-b">open-set</span>
+                    </div>
+                    <div class="signal-console" aria-hidden="true">
+                      <span style="--level: 84%;">keyword prototype</span>
+                      <span style="--level: 62%;">stream window</span>
+                      <span style="--level: 31%;">unknown reject</span>
+                    </div>
+                    <dl class="visual-metrics">
+                      <div><dt>3-5</dt><dd>samples</dd></div>
+                      <div><dt>gate</dt><dd>threshold</dd></div>
+                      <div><dt>cool</dt><dd>down state</dd></div>
+                    </dl>
+                  </>
+                )}
+
+                {project.id === "waste" && (
+                  <>
+                    <div class="visual-waste visual-waste-lab" aria-hidden="true">
+                      <span class="algorithm-kicker">classify.route.export</span>
+                      <span class="camera-frame"></span>
+                      <span class="bin"></span>
+                      <span class="sort-line"></span>
+                      <span class="label label-a"><span data-copy="en">paper</span><span data-copy="vi">giấy</span></span>
+                      <span class="label label-b"><span data-copy="en">metal</span><span data-copy="vi">kim loại</span></span>
+                      <span class="label label-c"><span data-copy="en">plastic</span><span data-copy="vi">nhựa</span></span>
+                      <div class="confidence-stack">
+                        <span style="--confidence: 82%;">organic</span>
+                        <span style="--confidence: 58%;">plastic</span>
+                        <span style="--confidence: 34%;">paper</span>
+                      </div>
+                      <span class="algorithm-readout readout-a">MobileNetV2</span>
+                      <span class="algorithm-readout readout-b">TFLite</span>
+                    </div>
+                    <dl class="visual-metrics">
+                      <div><dt>10</dt><dd>classes</dd></div>
+                      <div><dt>top-k</dt><dd>confidence</dd></div>
+                      <div><dt>edge</dt><dd>TFLite path</dd></div>
+                    </dl>
+                  </>
+                )}
+              </div>
             </div>
             <div class="story-content">
               <p class="project-type">
